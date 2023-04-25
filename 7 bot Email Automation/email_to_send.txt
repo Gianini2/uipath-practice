@@ -1,0 +1,12 @@
+Dear Human,
+
+An error has been found in your life. 
+
+Date: {0} (this is a placeholder, zero).
+
+Error: error_message (placeholder 1)
+
+Attachment:
+
+Regards, 
+Error Bot

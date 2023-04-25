@@ -1,0 +1,336 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Desktop_Data_Capturing" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1112.8,4652.8" sap2010:WorkflowViewState.IdRef="Desktop_Data_Capturing_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Desktop_Data_Capturing" sap:VirtualizedContainerService.HintSize="988,4588" sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="customersData" />
+      <Variable x:TypeArguments="x:Int32" Name="rowNumber" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="Excel Process Scope" sap:VirtualizedContainerService.HintSize="946.4,260.8" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+      <ueab:ExcelProcessScopeX.Body>
+        <ActivityAction x:TypeArguments="ui:IExcelProcess">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="296,174.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" CreateNewFile="False" DisplayName="Private: Use Excel File" sap:VirtualizedContainerService.HintSize="254.4,81.6" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" ReadOnly="True" WorkbookPath="customers.xlsx">
+              <ueab:ExcelApplicationCard.Body>
+                <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="484.8,262.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ueab:ReadRangeX DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="443.2,169.6" sap2010:WorkflowViewState.IdRef="ReadRangeX_1" Range="[Excel.Sheet(&quot;Sheet1&quot;).Range(&quot;A1:J101&quot;)]" SaveTo="[customersData]" />
+                  </Sequence>
+                </ActivityAction>
+              </ueab:ExcelApplicationCard.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ueab:ExcelApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </ueab:ExcelProcessScopeX.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ueab:ExcelProcessScopeX>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: My CRM (Sample App)" sap:VirtualizedContainerService.HintSize="946.4,4194.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" ScopeGuid="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="912.8,3903.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="type addr 2 = blank" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="871.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_17" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text=" " Version="V1">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="139, 220, 128, 20" ElementType="InputBox" FriendlyName="'Apartment 7G'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddLine2' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddLine2' /&gt;" Guid="6d6193d4-01a1-4f2f-8a24-56c43be39b83" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAIgSURBVGhD7ZjtccMgDIY9FwNxl20YIVN4GX5mAW9A9YqPCoJT3CZ3tdHT0wXLAp/Fi8Bdtm0LamrZVBBqlRVB3O93tUkNdAVxu93UJrPH4/FaEMpcqCCUChWEUnFMEKsNy2KC8+n6hHhn6B2WxmxYcY/ezwi/sS6c+FV/xSFBrNYEaylp71CEd8GYDyX8yNiItSQHiMGQMEQn72gB4N5EHBCEDw4Joz/7jon8J4KAyJ3Hu5278r2LcUHklcTCSMnjxFsSSCqzLJhEVX6psnDXFG+zH31o4oo/lnPj1uC4jX5plihGPkc+P8biXox3Je4HUXD//PwPifNkDAsCe2+unmjztoFE0v6bVxbvz70SKxOPMwgmWU5C9uOibXNMs4KzP8UW0XDZT/489gvKO7XxfFYaFNXFGBSEWHUyUW0i5TW1LU3ibvyRNn7ls9kgLBELZLz0d8HWlyraXvzQONdiTBBITLXy04rdmxAkO1cC6ZcJPtLGb/oSqJCxQMZLf4dS5eJVXYEyA+NcjSFB1MmLsA9fHN0tA4KQfirB7UQdascKZb8HjH4ZC/b8T3QE0H5leLxDqmzJNQNDgthdPZww2oc7hziIIJd5QzHPWwwdHLkfJkH4d9so8fk58lCZxyPKtRg73aqgsRwdXFuq/0PgGW0FnIDhQ2WXdkKU06OCUCr+JgjlcqgglIqXgsBNtfmsKwhlbp4EoaYGU0GoCdvCFzpkQDaphMxUAAAAAElFTkSuQmCC" InformativeScreenshot="73b98e222cf265e9c810e17a0e5b0f8e.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="59, 220, 61, 17" ElementType="Text" FriendlyName="'Add Line &amp;2'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label3' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label3' check:text='Add Line &amp;amp;2:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEEAAAAVCAYAAAAZ6IOkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFqSURBVFhH7ZXbscQgCEDtzXpsxlrsxEbsgAsqKxrcuI+PO7N8nElCsgaOkHWlFPh1TAJiEhCTgOwl5AjeOQhJuddJQb+vxxMEFyBNMSQFcD5CXuNvQO91mHMlJPUZja2EHD2EiCKeLPYVCV+C8h2FZ4j++QZKNhJoEUqYj9oz/0vCCknxMav3VnQJNArdau0IUdDUcmJcdvHBwTjU8wABd7GuI8ak7jSvfzA+YyPu5asSpsJJyJQkJyBabhev18yhBOch5nbvUQjFxVje7vKUzz2KBCpiJCKv15dzkrs4XzdOO2Ekz+vQ8dEFzO5bVUW+NnZXCf1fYX0pFbkWJ5PU4nzd+EzC0Xy/IYC4SFBbjUdiSpKK6sXu4nKNDySsxVGOl06om/e6AGKRQInKUWDGnFNirTtQlpj9XXzQ5MjuqgWfSMDzWrj8XX+GGe8ftM3cyBeoH8ZfwyQgJgExCYhJQEwCYhIQk1AK/AH8pwAD1yYdFQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into '&amp;Zip'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="871.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_18" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text=" " Version="V1">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="139, 287, 74, 20" ElementType="InputBox" FriendlyName="'10028'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddressZip' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddressZip' /&gt;" Guid="6c2ab3b3-567c-4440-8cf4-afd33b29aa88" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE4AAAAYCAYAAABUfcv3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFDSURBVFhH7ZfRjcIwDIY9lweK1G0yQqfoMnnsAt3AZ+fa4tC6kICOiPMn/oe4LlI+TAmwLAt56uPiGrOLG8fR8yDCqbhhGDxG5nnexYmrgzjnHBfXyHvEpSSvI1b9C6gTlyIFCDStS2EKSABICEAYbleu65CD8WY1xZB75Z6g6r3ypLhEEX83C1oci0SMfDUvuAcp79mqT4Eg6DpQdir98r753ok/nLW/Yyq/qrIpJS6L0NO0irDqd6TIEymGCtF2f0+8JG7f+Mq2tuolauL0VMrEYfk46JGPiZMaqCnjAk8d93F6nzbhI+Ly+iDt5JnYMX/+jBNpxaQxj0T3yGvirEm5quv7N0R00f/lPw5CzTlOJm87w92f5YrzXe/WmEpxBv7PoVHcP8TFNeLiGrkUJxc9dk7FOc+x+drFeeri4pqy0A9r17a6NjpTzgAAAABJRU5ErkJggg==" InformativeScreenshot="df8e4a8df74298d1d1edd10a78e732c4.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="59, 287, 23, 17" ElementType="Text" FriendlyName="'&amp;Zip'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label7' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label7' check:text='&amp;amp;Zip:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABsAAAAVCAYAAAC33pUlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACvSURBVEhL7ZPtDYQgDIa7W+fpMp2lm3QRNuidxA8ooEiIyV388STqiz5tQQgh2FO8simUMiEDgAKSNUM29e900tGZGAGZVLN7XMqE0Fjr2V1OZcpoyHo8S8cYr7/5Nup9vO1JtGXKhn5/vAyOroUgL6xCQ9aorugsKWa5J8nXO6qypcp4+nw2W1bsU8qJbGCMaoz5/7URP+Rl6Zq9q5EDcoXrrIcfkQ3wyqbwr7JgH/v29EeIXx/0AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into '&amp;Mobile'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="871.2,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_19" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text=" " Version="V1">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="139, 396, 128, 20" ElementType="InputBox" FriendlyName="'718-860-7100'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='textBoxPeopleMobilePhone' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='textBoxPeopleMobilePhone' /&gt;" Guid="1b618999-c2a6-4fc4-ae56-c1bc1d6b94cd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHuSURBVGhD7Zj/zQIhDIaZi4FI3IYRnOKW4U8XuA34WhDlR6tAvHzK9YlNvF7TkvaFO1X7vnsxsWQiCLHCHoK4Xq9iJzWEFMTlchE7md1ut9eCEM6FCEIo+D1BOIefz8LlPKLWl9MlCGe1V0pVZvwW7gLOepNfA84ar0Oc9sbSXWVjtuRXXptn1s3gOnS4l/sTM+vkcr6rtSpzJwQ0NjbJeavpxmu8xhm7DYagfaMJNga/Kx9nAPnN/TvGawueu18TOWt61knlnKm1CFOCwN1TNgiHyDUa49OAM7gYOB1U5n+A/iwJmbPi7Tq5nBO1VmFcENUgI1Wj812Fu1/n9xJ0TDj2ie6jX2fTra8bOtbJ5RyutRDDgsDmtPOqBQGEgUAjwdjdRcSE5hsDAolHfHp+jw6pZ51cztFaKzEoCG63V4IodufzJMCjNzzHcVJMDDZfmdwfj2tuSEXOB33r5HJy/jMwJAi+MX2NzmFj8BcG4+99rlP1IpVw5R2iYUAQ2TO/gWh0sfuJhrIx91zhRuZnTpSWgXVyObtrrUe/IODFz9p6qomq0UD8HV++B9SwMSCWmf8hAlPrbHN21VqQ4ZfKf+eIfw+5nEfU+nJ+TxDCoYgghAIRhFDwUhB4U+x8RgpCODeNIMTE0EQQYpnt/g+j6TVqTHcmAwAAAABJRU5ErkJggg==" InformativeScreenshot="04a85d9dfe813541d25c49c73b7f7805.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="59, 396, 41, 17" ElementType="Text" FriendlyName="'&amp;Mobile'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='label10' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='label10' check:text='&amp;amp;Mobile:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC0AAAAVCAYAAADSM2daAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEMSURBVEhL7ZPbDcMgDEXZzfN4GWZhExZhAxfzikExTVslSio+roArxz4Yx4QQ6Gla0FfpX6AdoTFk0HW+t0DGAFkvYwc5JAOW/MzXYj6QAg0EgOSa58lCvMi30FLnQSMhGkJXPG/TJRBuDu04eRkRHg2wLnZ7g87jwt0Xo5SAYmz1K5wEHaC7PM0vDCVmlA7dVh4Nhq1rjBkKu/gqYH32xQh1vnYB8e/k5sT4ctY0geaiDBDPqcgG3WDqN7W4BNJ8sec8rctV4hKaptBcAPi5E+A50Ec6O2oOnfb1uQ+Oxzt/3LdaZb5/7nQnAR3P6o+499Qa9Jin+RpD1g70/bWgr9KCvkoL+io9EDrQC8NuB7UwIa5LAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ClickType="Single" DisplayName="Click '&amp;State'" sap:VirtualizedContainerService.HintSize="871.2,157.6" sap2010:WorkflowViewState.IdRef="NClick_7" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="139, 264, 80, 21" ElementType="DropDown" FriendlyName="'NY'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='comboBoxPeopleAddressState' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='comboBoxPeopleAddressState' /&gt;" Guid="427d71e4-b603-4ab5-8dd0-a98eb4951109" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFQAAAAZCAYAAACvrQlzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEmSURBVGhD7ZXdDYMgFEaZi4FI3IYRnIJleHQBN7jlQyFIxUYhWuI9zUn46YtHaMU8zwSZNsSgbBtj0HEc2YuC3aDDMLAnnabpOOibQIwaOWhGiHGF0IuDJuQxzshBd7g3qNUkhSRt1znAmtRk3cdotd0DRpPSxu32wQNBBQkfcCUGXcdCkfEbwJDKX8Cfc39QF08rSSpUS4P6qSThNy1pKUj2VNPxSFCbn8okaAzpostYvR/2ggrcyoLp964HdUMTTulXUAfWNle/H0on9FdMWBXU/z5iXAqar3VCKSg8igkrg2KKa61eExSWYsLqoMu/uHtjLwp6ZIOgyynloIvng74ADtoYDtoYxMBzX5WDZuB5az0Mik32vLtBmTq+grJt5KBNnekDMj4qQtpHHGUAAAAASUVORK5CYII=" InformativeScreenshot="66d0443828f73ba8f06b2e518b502121.png" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                      <uix:Target DesignTimeRectangle="59, 264, 34, 17" ElementType="Text" FriendlyName="'&amp;State'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label6' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label6' check:text='&amp;amp;State:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACYAAAAVCAYAAAAq05ytAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADnSURBVEhL7ZPtDcQgCEDdzXlcxlncxEXcgApnVfAjmsulvcQfL2lahFdAFUKAN3LEdvkzMW9BKwXqxrg25sd0xBwYpcH68s6ZJIfC2oJn8YKVmAVasVniR8WoY7FDTXIPVqfR4jdnyqhzvIiJ57zVIuauYcCx/Jzh8tP4ZMJJNzDeOBGD8tV+oqS2np0bMRSrGe0Yk49IMfmdWLxIS2K5WFWURlQV6XUM3612SNKIUcGqK0guIMRK0c9udUdZ7ZL8mRndjlGCbvvTxaBi93OBxFiMyJV/+Ivlf5ojtssR2+WI7fJSsQAXMpIR1QOSApMAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <ui:InterruptibleWhile Condition="[rowNumber &lt; customersData.Rows.Count]" DisplayName="While" sap:VirtualizedContainerService.HintSize="871.2,2836.8" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_2">
+              <ui:InterruptibleWhile.Body>
+                <Sequence DisplayName="while loop" sap:VirtualizedContainerService.HintSize="836,2669.6" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="Type Into name" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_9" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;first name&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 93, 128, 20" ElementType="InputBox" FriendlyName="'Oscar'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='textBoxPeopleFirstName' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='textBoxPeopleFirstName' /&gt;" Guid="df9d4da4-ef1c-4996-95d1-71851b7b0c87" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFaSURBVGhD7ZjBDcMgDEWZi4EsZRtGyBRZhmMWyAbUBoygJRGHqo3Cf9JXU0LpwU92WnMcR0AQDYRAmhQh1nVFJo3QFWJZFmSy7Pt+LQSYCwgBGiAEaBgWwm8UrDHBSCwF5/MN8CjGhGAZjKGwqQTesRwWUjyQISGc7RRfJKEtvwFPYUgIK90hXlXELpHWvbNplHDXIDXHb4FsHjGyru2lHj1xXfbyWTyGiOSczneBnzEmhHXhczpwwWPx9JUpknjuKqaVozdiogh8to6gMpPAv/hCh0jFNzxWyPE7qakWOu1s4XvEe1OHkM9lIc72g5/yvWcI7gJOW/5pgXOn0E6g+yDEbRgS4v1Xht+4gGUE1ONAuoVcn42MNF7KsuNzIcStGBOCufofQgqr92wtQeehstkrowNC3IphIcAcQAjQACFAA4QADZdCyE1kvnSFAHPzIQSCSCAEUuUIL++6Sy5QMM50AAAAAElFTkSuQmCC" InformativeScreenshot="62989c6cbd399333ba0d2cf1af28bcc9.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 93, 29, 17" ElementType="Text" FriendlyName="'Firs&amp;t'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='label2' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='label2' check:text='Firs&amp;amp;t:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACEAAAAVCAYAAADID4fUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACsSURBVEhL7ZLbDcMgDEW9m+fxMp7Fm3gRNnB5uZCEqFWr0kTi40gI8M2JDYQQ7N8sCeeqEmIEYLABjTWeCRkgmx5qvuNEgkwO+x+ibPhC/IYS/TjyGg3TuEhqXRshSapRY6x7uW6c/d6byB+JZ3uJLlA5CrGWe/3f/74TXXiWKtKlC5WpEk98BDVjpoQQtHH0GXM7keraO9oKeWfG2QOJ+SwJZ0k4S8K5gESwBwjDsxPVZnntAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="Type Into last name" EmptyFieldMode="[NEmptyFieldMode.SingleLine]" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_10" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;last name&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 116, 128, 20" ElementType="InputBox" FriendlyName="'Madisox'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='textBoxPeopleLastName' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='textBoxPeopleLastName' /&gt;" Guid="16170dfd-4bb5-42fc-920f-4deb1a5ad25c" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGrSURBVGhD7ZbbjcQgDEWpi4KQ0g0lTBU0k880kA5YX4JZPJOMwii7Gin3SJaIefz4xODWdc0MhgaFYJhoQjweD8ZNA+wKMU0T42axLMt7Ici9oBDEQCGI4ZwQc8zeuexC2r4Lc45ecj7K6CQ4Z2Q9+XfOC+G9LaZK8okQFONrGRAi5hh8jlrFFLIPEp8IUT/J9zEkxAwJqhEJcqSuwJhDxyjhc7tdZG/A1SJ5dJnSUTox5ig53aO2dXucD7kcJee3boT9rubJpYwJ0QqZpGC2sIaW394ZIW0rIJQVQs7RwiJXxk97IEy1KwWRKiaZ74QjlzImRCmWFK1cF1KRXggZB3QA7RKm8BX9NudhLbqDqICFR3vKBwSS9bThzxgUAkM8Lusf2vIoFK6QWkbNHxX3JS9/vVxBDh3iaI+OVbYySa5mWIitKF2bL/mt9f8+AfS+32n/yJt9+lDFWoyProxtHnm8X/QtQ65lXIieLg8J9FHZHo+6RvMopBHiad/uo1LXqRigF4lcyTkhyG2gEMRAIYiBQhDDWyEwybhf7ApB7s2LEAwGgkIwuljzD1Hx3CyenDfSAAAAAElFTkSuQmCC" InformativeScreenshot="6577cb154519fc443b7411a0d42f5c64.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 116, 29, 17" ElementType="Text" FriendlyName="'&amp;Last'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='label1' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='label1' check:text='&amp;amp;Last:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACEAAAAVCAYAAADID4fUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAACtSURBVEhL7ZLBDcMwCEXZjXlYxrOwCYt4AypkY+zU6qEVbSr58A75ccTjO1Br1V9zJJy7SrASkPJTnkeehBRFLCq7dxf+TIJJASAYA+x85MSWiRacz71e7O0mmNpAKahYpOXz9lnXYYNHE7711FBroZMhYRsD8Xj2JuKMX0H/Nkti1N4HmoTJRD59+7nEWnv8XGvemljzVcgyk5rkNmwkvs+RcI6EcyScG0hUfQCUVrlmiPAhNQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <If Condition="[customersData(rowNumber)(&quot;gender&quot;).tostring = &quot;Male&quot;]" sap:VirtualizedContainerService.HintSize="794.4,409.6" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,250.4" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ClickType="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="click male" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Version="V1">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="139, 138, 56, 19" ElementType="RadioButton" FriendlyName="'Male'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='radioButtonMale' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='radioButtonMale' check:fulltext='Male' /&gt;" Guid="1a8e42e0-dcf6-4b7f-8110-cedba9f74e57" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADwAAAAXCAYAAABXlyyHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFNSURBVFhH7ZTbDcMgDADZzdPkg2WYIEOwCSNkgWzgYohTm0dVtYnU0Fg6kZqHOHAx67riP3ELj84tPDpd4XmeFa0xV6QSZsFpmhTviXu0xqCxXuWDAzQG0AU5tsBbNOAwtPoORAlL0TJkXs7RkDAggEW/5wI6iIfwy8K9WJYltXKOhoQtWmvQ+i0XXDoACz8m3JI1VJ4RGa+ls7CnzW9lTeUMzsdb3oSpb1s3wZKFcP4bFGMOoCusNhXheEt4b6mcSZTbeo7napDC4sCIfGhBzfuUk4RJhATj7yShhUlSrl0Kl/2J4iH8lHNKmr6jAETJfDNP4VSqYvOtG6bcUTdacsqjlV9o+uZb1cJPGcp3Snpfpz6kb6iESYrFZMi8nKORwhJZ0jRGl2slHDn90WI4WFCKUpTjr0YlzJTRGnNFusKjcguPzi08On8mvOIDp5mHFz96wmEAAAAASUVORK5CYII=" InformativeScreenshot="8c041828e6a9ca829da2fca048b77019.png" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,250.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ClickType="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="click female" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Version="V1">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="203, 138, 64, 19" ElementType="RadioButton" FriendlyName="'Female'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='radioButtonFemale' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox5' /&gt;&lt;wnd ctrlname='radioButtonFemale' check:fulltext='Female' /&gt;" Guid="d74eb14e-0666-459b-a91d-613c9d856399" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEQAAAAXCAYAAACyCenrAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFRSURBVFhH7ZTRjcMgDEDZjWnywTJMkCHYhBGyABvQmOLGNiZHTtd85EB6agHbwq9Qk1LKk4MpRDCFCKYQwRQi6ApZ15WhxTyRRggKWJaFMSYmZGdMNgybfdRi/4DgsrE+R23vlzAhVIQcdJ3mcECIy0Hd+wJ3CemNbdvKJ83hPEjITzJwnEs5FxK9PZ4SNgJNOXc8NRdIXK0FMbgP0FwiRK1/kS8IIQcH9gbLXmm8ft+Bw1sfa7Mo8Z1f1vd5cCa7gLUPPutUSK9+nY9y2w2BJpgolMUa4fm0KZkvhXTr11qj3CpE/cUGhJSnQJrTbki3/kXu+1OFw4tmR28IvSkpxext58lo9et8lEYINI2N00HXaQ7nRMhOOSReZ/Xt60Le6+Qp7DRCanxT/yJMCIADBVARMGT802iEIHJoMU+kK+S/MoUIphDBFCKYQgRTCCPlF1EAI6euF/LvAAAAAElFTkSuQmCC" InformativeScreenshot="22030da389927973df03bb9d4d1f7686.png" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="type address" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_11" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;address&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 198, 128, 20" ElementType="InputBox" FriendlyName="'1049 Park Avenue'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddLine1' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddLine1' /&gt;" Guid="238b9159-e67b-4101-a0b4-6730b039768c" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAKHSURBVGhD7VjRrcMgDMxcGQip22SETpFl8tkFugGPM5gYx0kbtdWLEp9qCYgxxHc1tN3z+YxubmwuCLfGqiDu97vbRQ0wBXG73dwuZo/HY1sQjmvBBeFo8B1BTBM+jhNgnyCmIYYuxLF0gTH0sev62Hdd7IN8kjGGND7Masn+Hc0x3GkNxMo+G34WMLcf4tvaHAPFF9u7PN4UxBSHngkSgmgIgI9KbiG3CgIEsP80LsRF0KTuIXmnICDOEEIj2Ktj55GhSATB4uuLajB3s0BCSjonfBrmNoD+4tu/IHVFOBZ2CQL7Q9wUf4eIzo6PBGERLKsBjhA9VisECFHHCUGROiEO99HWRwn5BxIejde5IBo+Kj4D83IAUdnwfqLKwYffN7UDV8m0HvmUtQd9DNK4EJnsW3EOhB8JAmRkP+1T7xCFRFMQlNwXSeMkk38iEcTXsSwGc14B9sXVSe5R3nkwniugOg7V2lV0LF5+nkdn/7U4pXsE/EQQclz7SOgLJ2ErSekZiJ7FopKPdiKoxzeQ2TYBYkoMGYseGeRRXOVPIlR75blyT4Act+JUx//HD+4QRrKTLUWR/Ra86WRWYG2QUJ5YyaeEp/2l38BmbAb8moeC/No24qItIX0A7m+NW3EOhM8E0by4TOqMpkKQgLI/7gbNLxaGTmZFXptDTUO5j0h/3V5JvlW1FlUtvcvsUwQ2L57X0XutfbVXPkrW4uTeIfCZIBJe/Q+hk//W/xArSYIIuOSCsE1BULf4lH6GLdxmLtq6lNO9pFQ8vtfovYo+rc3viZ+2NbYR50DYKYgV+D+Vp8F3BOE4DVwQjgYuCEeDTUHgodv1zBSE49pYCMLNDeaCcBP2jH82ka3gh2otJQAAAABJRU5ErkJggg==" InformativeScreenshot="03e0ceec3ecb3b4871600936ffeeaf55.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 198, 61, 17" ElementType="Text" FriendlyName="'Add Line &amp;1'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label4' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label4' check:text='Add Line &amp;amp;1:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEEAAAAVCAYAAAAZ6IOkAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFRSURBVFhH7ZXRjcMgDEDZjXlYhlnYhEWygWsDLobavejKSSfVH08NJiH2w6Thui74dlwC4hIQl4DYEmqGGAKkoswNStLn9XiBFBKUJYaUBCFmqHv819B7IuSqzemYEmqOkDKKSEWdJ45IOEaFHAME3LhwRgItSAnzr3bPf5PAUM4nJNBRGB3QOkIURAV22x2es+KTG8ehXSdIvKPimFAez/XfHp9dws/yVQlL4SRkSZIT6O3X7rPibczclCBa+dlRFBfHkvKLuc41Fo50wr7IHO8v5yStOI87dzuBZc519i5rmN+qExLGv8L+UipyL04mqcV53PlMgr3zOwckqK3GR2JJkooaxVpxucYHElpcPEs5/mEnUKLaArTw3JXeHShLnH0rPulyZHe1gu9IwOtWuHxu3PPKLsGQL1A/jN+GS0BcAuISEJeAuATEJSAu4brgAQwNEveQbgkhAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="type city" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_12" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;city&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 243, 128, 20" ElementType="InputBox" FriendlyName="'New York'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddressCity' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='textBoxPeopleAddressCity' /&gt;" Guid="4f99d371-9508-40af-bb7c-4c0859a6dbd4" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHRSURBVGhD7ZbdjYUgEEati4JI7IYSbhU0w+NtwA5mZ4afBa94lbgPG76TTCKIYJzD4LJtGyEQOSAEookixOv1QkwawqEQ67oiJov3+30uBJgLCAEaIARouCZEcGQWQy7EpiJ9xlHdNU4g72w7v+AdWee/r/Hou8zNDSEWWuqP/nQSdA1LPjXZBrJ7CXtAiMe4LgR/cGcN2ZyxP0hCcIYWXSCQMwuZSzYwEOIxbgkR6g+/u7acwEWrSCr9cr/seNntR9d7kggsninmMbv59Y6ub8ny2NifheD5jYgLPUa4JwRf+lwlSp8ksSrtR/3eatLa5zrI/UaYKElOcKkiOo7nl/48Z4gyXC0s4JPbQsQdKB8/J0ESk3ZviZgUb6MEIpFzPC42zo+CZi2m16779R24qkgVUevAKANCSFNKOic2J6Z3BGjypdzLs1Ekx8+e5my3Vrdd9+d3CLma6EgwwJAQWiWkEmhfSkLe9c3YOC5XBKkU5R+gx8daJ0dGLUR93f1HAd8YFCIlpiRBdn86LvJPpbLbsfIv8W37Hqwlfb/zdySonmneDdzimhBgGiAEaIAQoAFCgIZTIeQmYr44FALMzYcQCIREc2QgxqLeYf87NvoBMqWYp1AQnUsAAAAASUVORK5CYII=" InformativeScreenshot="7d8adff836e08cdb5193b4f08b0b0ad1.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 243, 27, 17" ElementType="Text" FriendlyName="'&amp;City'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label5' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox1' /&gt;&lt;wnd ctrlname='label5' check:text='&amp;amp;City:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB8AAAAVCAYAAAC+NTVfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAADWSURBVEhL7ZPbEYQgDEXpLfWkGWpJJzRCB1kij40ojCzM8LF+nBlF5SQ3aLz3vItXvoWmnNCwMV+Q0jNCNmDZVe//wq38ECOpNccWVAEZZxkmCrnKRzZcLXcWqq4rSuwxjWMsgIxVMpIeWBeuidEgk94jcSuPH53XC3rmunNZL0W3hZqJzsP1KXYlDO90G0iMz7wpj4VL9ITA1qlvGlzlge5p78iPe5T5d4pX3MqFZ/+5RC3P83xjkefIBw7cHM8OWmadXBIJKTw5aJnFnY/xyrfwr3LPH1GyLVPY113dAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="type home phone" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_13" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;home phone&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 352, 128, 20" ElementType="InputBox" FriendlyName="'212-770-7000'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='textBoxPeopleHomePhone' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='textBoxPeopleHomePhone' /&gt;" Guid="d62905fd-b683-44b6-883c-3c7da35303fe" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGzSURBVGhD7ZhhjoQgDIU5Fwci8TYcwVN4GX56AW/QtToqhYLUzWYz0i/zMjPPlkngoWTMsiygUh3SQKiIzkCM46jqVAgbiGEYVJ1pnud6IJS+0EAohO8LRAj4ekapV+q/mOZATM6CMWaT9cksBQ/OOJg+X5Fq/Urw1/VLDnzBx7H3MS3Y1bMu/rWd0pi1Xqn/dtoCMTkwzsO+rAG8NbDP0f45nviNYn2FNVTsxB8+vtt4TAtMzih3vVK/Ax49MnAn0l0/ZXeImLw+B3ckV3L6W8iuX5jcfchue6V+BzwIBLfja4Hg6hPIjoyI/DRUtyFr6JX6PSAOBE6OyRavHAi+noI1XGBiP12U9HtKS6/U7wFRILaJYReXD0Raj7fe7bxBVn/ttVyYqF9apJYxS71SvweaA4GTUt7peSDq9Relyc58wXO9uVfPEBltgcDnceXQuE4ZDcRt/UHpBM/45JxRO/kLeqV+BzQF4rwtR6K7mgbivv5DmMB7JjYFv+m/AWGv1H874kPlv/Obfw9LvVL/xXxfIJQ/RQOhEDQQCqEaCLyo6k9sIJS+yQKhUqE0EKpIC/wAM81BVDebAqsAAAAASUVORK5CYII=" InformativeScreenshot="f30526f2dbbe5c7b19056aadd0f106f8.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 352, 38, 17" ElementType="Text" FriendlyName="'&amp;Home'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='label12' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='label12' check:text='&amp;amp;Home:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACoAAAAVCAYAAAAw73wjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAC8SURBVEhL7ZPbDcMgDAC9G/N4GWbxJizCBi4vk0JFSVo3KhIfJyWOHxeTgPeeV2CLarOyKDECMk1j97JFtflI1FnDAJBByjmE4RpD3hE/8ga1xrJL8fkiBqKlUUNpFIXqAM+EwMa6HK/Dco8ULzlIpVZeLBClJWfG5Y1WMXkmwxuJtocIxdqXBTyJv+N20bMb7Ln+jUah0dFPRFNOF//ZRuN9GtAf3RnRvva7n+k/2aLabFFttqg2i4h6fgB6DFg80K4legAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="type work phone" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_14" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;work phone&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 374, 128, 20" ElementType="InputBox" FriendlyName="'800-201-7575'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='textBoxPeopleWorkPhone' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='textBoxPeopleWorkPhone' /&gt;" Guid="becfd8ef-33c3-4fc5-ace4-aabde4a5d649" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAH3SURBVGhD7ZjtccMgDIaZi4G4yzaMkCm8DD+zgDegSOazRkbE+YX1XHXXCIm4vEJQq33fvZhYMikIscZyQbzfb7GHGtAtiNfrJfYw+3w+1wUhPAspCKHhNwXhHPycofwc7uQKX8MuCGeN10p5pbQ3tii1GY0+GNNmi17aX3PEwJwhhjEn4qw3yvjejM6W+YpB7BZyap/28HWz8U+AVxBBBA0LBYviYLHiAoFfW3+slfNWD/w1m/HK1DHKo/Zk7hFTRGMAc+Gk8MyMnNn4BeEXRBYJtIzioahl2Yb+C2C3YpcY5vLFgk5zLlCa2fgVYR4Z9e4PguhDkCxiJH2m/DSlQ4xzJ3Z7EhV+hyModpjus8zGLwr/UokLBosU7hBRDUq8sagtMK6iGONcXkFAXu4sUex85KXjqWI2flW+ODJKt6DEo/zQ/vEOUK0ujuW56TkLbUH05sSY2MV6dOecil8XVkGQIt28Q8A8qTNkfnCHGAlI/j0Eo/GV4HUIEKnpEFEkonOQ/hqI6Qk7zB0VxDkHCy88MLrq/5KQ2fi1Yd8hmncGzQ4Gf9hBTH8it/rK0i68zh0URBDQ2v+jcFyl52/fo0zHLw7/UnkF9VbxztvGO7nC1/ymIIRlkIIQGqQghIbLgoBBsedZtyCEZ3MqCDExMCkIscp2/werKSdXlgiP2gAAAABJRU5ErkJggg==" InformativeScreenshot="e67aa0eb0bbbb77dcd6738ece64ee6a3.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 374, 34, 17" ElementType="Text" FriendlyName="'&amp;Work'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='label11' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox2' /&gt;&lt;wnd ctrlname='label11' check:text='&amp;amp;Work:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACYAAAAVCAYAAAAq05ytAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEISURBVEhL7ZPtDcQgCIbdzXlYhlnYhEXcgBMt1lquPZP+6CX+eJOWz0fQkFKSN2qBzepfwEggREHubWcRBAHyfScRSIgo7PkudJrYfVOFByHX5+gpMC0Ukds/Y5TQgzBKnGn0GNihMQtGEIB9vQpq4BU6VAHV/AKSY8zWgVl83cj15J3LX2FqQk7eihtMW/UwCbWXGLX3DS1uiL+TA6ZNtgnlYu10ZSI7dAOxPG08TKjZt6n+/GCyXDAtpk0ZsZ2c8jd3a54C03/NnXg0PpgWyU2IdEqbjVAQu4cxABxW6YH1Mea7kA9WVjaOXi/r0fb98vtgVqPCTV/+d2iBzWqBzWqBzeqlYEk+EUo0Ejoz7QQAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="type personal email" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_15" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;personal email&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 448, 128, 20" ElementType="InputBox" FriendlyName="'jdoe@gmail.com'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='textBoxPeoplePersonalEmail' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='textBoxPeoplePersonalEmail' /&gt;" Guid="7e9a10e1-a048-49d4-9375-87bc98daa465" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAI+SURBVGhD7Vfh0cMgCHUuB/Ku2zhCp8gy/uwC2cAPVCxaNaZNr5cvvDuuFAsYfQGq1nX1IiIkQgiRQjIh7ve7yEUF0STE7XYTuZg8Ho8xIQTXghBCUEAIISjwPiGc9Vpb79LX9+D8Yo3XSnlForU3y2dRN3HI3v8npgjRPLyPD9V5q5XXZvGOB3EL2HWwHw7asxCii59ViMXApdu+N64Plj+DEKKLfRUCDtLAW42lXcNbrBp2pY3P73ZlzxfML6SKqVX0dxZbR7mO7STkDP7GGyBN8LNQVYLO2s3CW9EzVsjL83NAdcq5eKxiD+n5ZvZwQuwgRCzx9LAODjwSorLDRap4+qH0N0mAl4ULaAMC0G941YiEKGPnGMEvxa715kUzP/6ZliNSLtoMkiPE7TxfnXdrDyfBPCHqB6XvI3t+Q0nSoREhkFQ0K+QLQBVjwJs4k3OgG6wolJv78d8RWjZEbW/F6OknxJcJwdoHBxIiEAEHyHhh2vDWYYEMsDyTs6kncrUqS+1PaNkQtb0Vo6efEO+3DCydPXtuGbwE84PCXp2qxRBl7EAkjLF5GUiIZyty8Nd2s0JQruw00TJe8lb6CbF7qKQ2oLHfM/tz6GKHwYc0PlQiQqw4JwwPj+Ush0q2p4aOJMh7rf24TyJPqGRTQ+Vrrq5+QuwjxNGAC8DJvJw1sNSn9QphkKWZQ/AVzBFiu7Z/DfjPI5OlrjKCwzFFCMF1IIQQFBgSAhdFridNQgiujRdCiIigCCFEmKz+D6mYunpHXiy7AAAAAElFTkSuQmCC" InformativeScreenshot="43744f43b633d0224d079f115947ade8.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 448, 52, 17" ElementType="Text" FriendlyName="'&amp;Personal'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='label9' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='label9' check:text='&amp;amp;Personal:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADgAAAAVCAYAAAATtC32AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEZSURBVFhH7ZPhDcQgCIXdzXlYxlncxEXcgCtWFKk2vaS9pj1/vOQO8cFX0MQY8c2agE/XPwJ6BGPQNLLogs67UR7QWIehd6Y0AAT0MkaG4EXOzTodMDi0Bw1/orMBg7Nlguk3ry4XSQUtWoqlvHbNwSsvPuOtSPcBwea49OVcHS+AnYEIHXyD2YCMxapSs9aF3EgtUuL0X06/aSyiByPu13dOcflRWCWufPZ0bEWzqEALvoiAdcHU8HouGy1AMq9zXwLqmpcDNg2yhgUDurR2q9+3gPJpyPhlgMlYreKowQoi/EZ5O4DVZ/1Y1wIuSlC8MlxkU5A86lrJqTX3eToDQO1D2gLu99sBfJcm4NM1AZ+uCfh0vRww4gc8VkX7cuyDwgAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="0.005" DelayBefore="0.005" DisplayName="type work email" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="794.4,218.4" sap2010:WorkflowViewState.IdRef="NTypeInto_16" InteractionMode="Simulate" ScopeIdentifier="2214bd70-7bb2-4936-bbe9-a0baac5e3684" Text="[customersData(rowNumber)(&quot;work email&quot;).ToString]" Version="V1">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="139, 470, 128, 20" ElementType="InputBox" FriendlyName="'john.doe@fictitious.com'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='textBoxPeopleWorkEmail' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='textBoxPeopleWorkEmail' /&gt;" Guid="0033ff9c-bbde-4145-93bb-cf266d9f89bd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIQAAAAYCAYAAAA74FWfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAKmSURBVGhD7VjbkesgDHVdFMRMuqGEVOFm/JkG0gFXR0a2wIDxJB93Y50dZUGgR+Ag2J3e73c0MRExQphkshHi+Xya3FSAKiEej4fJzeT1evUJYbgXjBCGDEYIQ4bPCbGE6FyIS+p+hK/4WuIcfHTTFCcR56Kfd6+zd6z3c1IYNgwRortJ/xUhlhjcFB3t9KKdLDPpHeuJDtFPnj6hP4mnx6Vd06H9I/ipCoGT70LbGuNhvhCjls8PkkDjWoWgxfB0AtcyrE+ZjyGV4WlCee7oSyifjk7x1IsFFPpt/zne0RY+XaoIS5BcIKTLbKhyiF/OFVUl9TGH53oVW3SdfPU4oPp7LhSrRuJDPmlOMw7lltbaBcqd28puEBcIsZZjCcBfCDuMZHTgme5vWayafu0lFD5pzkqIRizW0ykXJ2qB2T8GOO5OFF014McHZbPZp3hihM2g3LNqInN1zNK+tjYyF9j6xbUl7Q2NfOgebMbhcVbmbR1/AOOEKJ1L/6o+dRlXbfGbT4yW9OWFECCVlKJtIdGEj7IqKL86nuBsbsv+TE8/2Fh+7NJpzt47QGknGInTag/iDxKiPE0JIAQTYS/1zuurIxAZaFj7bsUTnM1t2Z/pUxeEXUt78Z3KeYKROK32IL5zZeigtSSBanIVn71YoueSwAPKJ+7cVC160DZbu/T7pSsDOanrC1fiOn+vXKQl2zLvRj69K+OQU9EexAePykZQ6bf03FkXik8F9Kn8O9z3yu8hFoDF2fTqUQmwr/XdotUZdB5ZW/lNPvZqo6+amm71VcuXN018+v0dtaj/lex/Gel1qeUD/cketNqDuEaIvwBaSJTh/K2B057GDV2MESKvZ4YfxhAhDPeBEcKQoUsIDJrcT6qEMNwbB0KYmECMECZK3vEfzfXVYzZBIf8AAAAASUVORK5CYII=" InformativeScreenshot="11bacc667e35afc5f90c832f653f6ed4.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='mycrm.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                            <uix:Target DesignTimeRectangle="59, 470, 34, 17" ElementType="Text" FriendlyName="'Wor&amp;k'" FullSelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='label8' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='tabControl1' /&gt;&lt;wnd ctrlname='tabPagePeople' /&gt;&lt;wnd ctrlname='groupBox4' /&gt;&lt;wnd ctrlname='label8' check:text='Wor&amp;amp;k:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACYAAAAVCAYAAAAq05ytAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAEISURBVEhL7ZPtDcQgCIbdzXlYhlnYhEXcgBMt1lquPZP+6CX+eJOWz0fQkFKSN2qBzepfwEggREHubWcRBAHyfScRSIgo7PkudJrYfVOFByHX5+gpMC0Ukds/Y5TQgzBKnGn0GNihMQtGEIB9vQpq4BU6VAHV/AKSY8zWgVl83cj15J3LX2FqQk7eihtMW/UwCbWXGLX3DS1uiL+TA6ZNtgnlYu10ZSI7dAOxPG08TKjZt6n+/GCyXDAtpk0ZsZ2c8jd3a54C03/NnXg0PpgWyU2IdEqbjVAQu4cxABxW6YH1Mea7kA9WVjaOXi/r0fb98vtgVqPCTV/+d2iBzWqBzWqBzeqlYEk+EUo0Ejoz7QQAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <Assign DisplayName="contador" sap:VirtualizedContainerService.HintSize="794.4,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[rowNumber]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[rowNumber+1]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ui:InterruptibleWhile.Body>
+            </ui:InterruptibleWhile>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="3112, 264, 310, 638" FilePath="C:\Users\AugustoMognonGiani\Documents\UiPath\data_capture-augusto\mycrm.exe" IconBase64="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" InformativeScreenshot="1d2a55750f482b74ed8898eaab67a545.png" Selector="&lt;wnd app='mycrm.exe' ctrlname='Form1'/&gt;" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

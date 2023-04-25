@@ -1,0 +1,125 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="804.8,948" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Core.Activities.DateModifications</x:String>
+      <x:String>UiPath.Activities.System.Workflow.Business</x:String>
+      <x:String>System.Globalization</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="16">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="375.2,883.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Object" Name="monthdif" />
+      <Variable x:TypeArguments="x:String" Name="data1" />
+      <Variable x:TypeArguments="x:String" Name="data2" />
+      <Variable x:TypeArguments="s:DateTime" Name="diadata1" />
+      <Variable x:TypeArguments="s:DateTime" Name="diadata2" />
+      <Variable x:TypeArguments="x:Int32" Name="date_diff_to_month" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[data1]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["07/19/2021"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[data2]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["09/16/2021"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[diadata1]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[Datetime.ParseExact(Left(data1,10),"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:DateTime">[diadata2]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:DateTime">[Datetime.ParseExact(left(data2,10),"MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Object">[monthdif]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Object">[DateDiff(DateInterval.Month, diadata1, diadata2)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="   Dim y1 As Integer&#xD;&#xA;   Dim y2 As Integer&#xD;&#xA;   Dim d1 As Integer&#xD;&#xA;   Dim d2 As Integer&#xD;&#xA;   Dim m1 As Integer&#xD;&#xA;   Dim m2 As Integer&#xD;&#xA;   Dim m_diff As Integer&#xD;&#xA;   Dim y_diff As Integer&#xD;&#xA;   Dim month_adjustment As Integer&#xD;&#xA; &#xD;&#xA;   y1 = data1.Year&#xD;&#xA;   y2 = data2.Year&#xD;&#xA;   m1 = data1.Month &#xD;&#xA;   m2 = data2.Month &#xD;&#xA;   d1 = data1.Day&#xD;&#xA;   d2 = data2.Day&#xD;&#xA; &#xD;&#xA;   m_diff = m2 - m1&#xD;&#xA;   y_diff = (y2 - y1) * 12&#xD;&#xA; &#xD;&#xA;   If (m_diff &gt; 0 Or y_diff &gt; 0) Then&#xD;&#xA;       If (d1 &lt;  d2) Then&#xD;&#xA;          month_adjustment = -1&#xD;&#xA;       ElseIf (d1 &gt; d2 Or d1 = d2) Then&#xD;&#xA;          month_adjustment = 0&#xD;&#xA;       End If&#xD;&#xA;   End If&#xD;&#xA; &#xD;&#xA;   date_diff_to_months = m_diff + y_diff + month_adjustment" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="333.6,164.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+      <ui:InvokeCode.Arguments>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="date_diff_to_months">
+          <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="date_diff_to_month" />
+        </OutArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="data1">
+          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="diadata1" />
+        </InArgument>
+        <InArgument x:TypeArguments="s:DateTime" x:Key="data2">
+          <mva:VisualBasicValue x:TypeArguments="s:DateTime" ExpressionText="diadata2" />
+        </InArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[diadata1.ToString + vbCr +&#xD;&#xA;diadata2.ToString + vbCr +&#xD;&#xA;&quot;month diff is = &quot; + monthdif.ToString + vbCr + &#xD;&#xA;&quot;date month diff is = &quot; + date_diff_to_month.ToString]" />
+  </Sequence>
+</Activity>

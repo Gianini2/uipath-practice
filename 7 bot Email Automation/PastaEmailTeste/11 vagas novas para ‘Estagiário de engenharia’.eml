@@ -1,0 +1,2461 @@
+Delivered-To: augusto.giani2@gmail.com
+Received: from maild-hf.linkedin.com (maild-hf.linkedin.com. [2620:119:50c0:207::190])
+	by mx.google.com with ESMTPS id a3si10785421pln
+	.141.2021.09.20.10.10.52        for
+	<augusto.giani2@gmail.com>        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 20 Sep 2021 10:10:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzO9T2K1vrXovqv9oBK04u954WVJMZTYnhdkchBkVCG0IO30CYwB0koIsNELvjo1iPzRS6w
+X-Received: by 2002:a17:90a:9a97:: with SMTP id
+ e23mr81554pjp.232.1632157852905;        Mon, 20 Sep 2021 10:10:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1632157852; cv=none; d=google.com;
+	s=arc-20160816;
+	b=qWQ8/z9VOPCmO/pN3jLPVqV2MNwbZ0kXoqfcun2UiF0+JoL9oa7qE1Fp/fZ/giKAbR7KpN96FqS
+	glsGg2kZxxcnXpAw28aiuMwSTVD7gQw+uMGLhGqrozuqyWnaU2pqMexL+gYpx1aP5GHUhEfjT0/3s
+	6U9y43sYbZuCvqMN+aPhYIQYO1FLvavvQMzkfmm5Grl1MB5D6pGSiYYU71aSuLT/AaSbjnz2p81MT
+	ImzK1LVXsbFX697nhK8D+sw3i/OOl4KOEUOQuuMH9MpJaCs5QDdGo8lcSyhO5blTFvZr/FVdg9zmQ
+	Vdq6uoBXVugjbh8dVin6aAZgc02e5G3slNLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+	s=arc-20160816;
+	h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to:
+	mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+	bh=aKV2a9qmJzvlsir85GywK+0r+2eMRVs9617Cot9rBEs=;
+	b=RHqJ8f9cm0nO+2Ymv//QCHmbuDoY3B0wq6imCQ6L6y1SlsF2Z/jPMjbSO2CoDfmumX0+M/9aA9H
+	tP6hWiXSh28jaCbJT+hqcPicFLlBB+KUNFcDY5blkjuV7SLPbvY8fZXEK2vo/vyaDlZFvtZjmddJq
+	kjxPHL5No0wZDxjv7xxhz6B73LSIRzBXFWnMHvlB04/JDxIihjbkmzxDAKmh/Uuof0q1iBPkRSy+S
+	z3bZb2tdqKMRH3cjFW7gWbrR49eU19GaeK1AChkcS9jI8KRpoddQp087sOix0gcoqmNOPFeUZ01kY
+	kHAt8XZRMfJ1CkrdEzs6l8pmRwDrC0lnrp+w==
+ARC-Authentication-Results: i=1; mx.google.com;
+	dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=jQhDRtKl;
+	dkim=pass header.i=@maild.linkedin.com header.s=proddkim1024
+	header.b=SbKZoqJw; spf=pass
+	(google.com: domain of s-2kfme2kplbw430fum5g3ttq3xjn4z6zyb5xmclqhzsw83d7ao8wtxxdj@bounce.linkedin.com designates 2620:119:50c0:207::190 as permitted sender)
+	smtp.mailfrom=
+	s-2kfme2kplbw430fum5g3ttq3xjn4z6zyb5xmclqhzsw83d7ao8wtxxdj@bounce.linkedin.com;
+	dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: =?utf-8?q?=3Cs-2kfme2kplbw430fum5g3ttq3xjn4z6zyb5xmclqhzsw83d7ao8wtxxdj=40b?=
+ =?utf-8?q?ounce=2Elinkedin=2Ecom=3E?=
+Received-SPF: pass (google.com: domain of
+ =?utf-8?q?s-2kfme2kplbw430fum5g3ttq3xjn4z6zyb5xmclqhzsw83d7ao8wtxxdj=40bo?=
+ =?utf-8?q?unce=2Elinkedin=2Ecom?= designates 2620:119:50c0:207::190 as
+ permitted sender) client-ip=2620:119:50c0:207::190;
+Authentication-Results: mx.google.com;
+	dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=jQhDRtKl;
+	dkim=pass header.i=@maild.linkedin.com header.s=proddkim1024
+	header.b=SbKZoqJw; spf=pass
+	(google.com: domain of s-2kfme2kplbw430fum5g3ttq3xjn4z6zyb5xmclqhzsw83d7ao8wtxxdj@bounce.linkedin.com designates 2620:119:50c0:207::190 as permitted sender)
+	smtp.mailfrom=
+	s-2kfme2kplbw430fum5g3ttq3xjn4z6zyb5xmclqhzsw83d7ao8wtxxdj@bounce.linkedin.com;
+	dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maild.linkedin.com;
+	s=proddkim1024; t=1632157849;
+	bh=aKV2a9qmJzvlsir85GywK+0r+2eMRVs9617Cot9rBEs=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=SbKZoqJwnXhxAHPlys7FOhUcwkNHPOXlgG3OrVe3ZyyRPwum9HccPqDUH7ykXAiLzlkCccOm3+k
+	NXu1smoQdyelGc2FaUEtESjFBnOcMmA3OBSD3XP312wwdhn2hbvXpaKmpZ+M933TFHjO0jpey2lAq
+	wMZB1ILc5du/UqB64x0=
+From: Alertas de vaga do LinkedIn <jobalerts-noreply@linkedin.com>
+Message-ID: <514582416.2285639.1632157849524@ltx1-app70668.prod.linkedin.com>
+Subject: 11 vagas novas para
+ =?utf-8?b?4oCYRXN0YWdpw6FyaW8gZGUgZW5nZW5oYXJpYeKAmQ==?=
+MIME-Version: 1.0
+To: Augusto Giani <augusto.giani2@gmail.com>
+Date: Mon, 20 Sep 2021 17:10:49 +0000
+X-LinkedIn-Class: SAVEDSEARCH
+X-LinkedIn-Template: email_job_alert_digest_01
+X-LinkedIn-fbl: =?utf-8?q?m2-aszzwpdl0bbdyt2nk15bjf1egyyqajapsh0fw9lnnvtf1vdjydvpfep9ni?=
+ =?utf-8?q?giohw5c69k3dj2h3skhs7wzxehcc8326fplco52w9dtc?=
+X-LinkedIn-Id: a89ral-ktswn4ds-f7
+List-Unsubscribe: =?utf-8?q?=3Chttps=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&t=3Dlun&mid?=
+ =?utf-8?q?Token=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&ek=3Demail=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01&li=3D44&m=3Dunsub&ts=3Dunsub&eid=3Da89ral-ktswn4ds-f7&loid?=
+ =?utf-8?q?=3DAQGtZ7Mc0MIIWQAAAXwEMFdJfB-ksW5L5f66pEP9=5Fwob9si7-E=5FIjcO3Sfk=5F?=
+ =?utf-8?q?OxDp-CUD5hcg=5F9HxGWv=5F6ZvA8vi5Jc5pt1k4=5FUCXNd6=5FPwwDg42IkRRtfk0th?=
+ =?utf-8?q?OU=5F=5FMc=3E?=
+Feedback-ID: email_job_alert_digest_01:linkedin
+Require-Recipient-Valid-Since: augusto.giani2@gmail.com; Thu, 16 Nov 2017
+ 17:21:08 +0000
+Uid: 214
+Folder: Linkedin
+Sender: Alertas de vaga do LinkedIn <jobalerts-noreply@linkedin.com>
+PlainText: LinkedIn |  Seu alerta de vaga para =?utf-8?b?RXN0YWdpw6FyaW8=?= de
+ engenharia em: Porto Alegre, Rio Grande do Sul, Brasil11 vagas novas
+ correspondem =?utf-8?b?w6BzIHN1YXM=?=
+ =?utf-8?q?_prefer=C3=AAncias=2E--------------------------------------------?=
+ =?utf-8?q?-------------ESTAGI=C3=81RIO?= DE ENGENHARIA CIVIL - PORTO ALEGRE
+ Em Porto Alegre/RSOEmpregoPorto Alegre, Rio Grande do Sul, BrasilVisualizar
+ vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726352513=3FalertActio?=
+ =?utf-8?q?n=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ=5FQAAAXwEM?=
+ =?utf-8?q?FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhz?=
+ =?utf-8?q?UQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr?=
+ =?utf-8?q?4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhUuULjganPyU?=
+ =?utf-8?q?3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUi?=
+ =?utf-8?q?wOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBz?=
+ =?utf-8?q?g3qBsEw4UiNYxkRs&savedSearchId=3D604844914&refId=3Dafd00cb3-9d72-?=
+ =?utf-8?q?452f-a19a-e0f110777d53&trackingId=3Dc1kI9aRVwq80n5ok1kWQfg%3D%3?=
+ =?utf-8?q?D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-email?=
+ =?utf-8?q?=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-6-member=5Fdetails=5Fmercado&trkEm?=
+ =?utf-8?q?ail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-6-member=5Fdetails=5F?=
+ =?utf-8?q?mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn?=
+ =?utf-8?q?%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2?=
+ =?utf-8?q?BDVDD0Z1BW1Q%3D%3D-------------------------------------------?=
+ =?utf-8?q?--------------ESTAGI=C3=81RIO_DE_ENGENHARIA_DE_PRODU=C3=87=C3=83O_-?=
+ =?utf-8?q?_S=C3=83O_LEOPOLDO_Em_S=C3=A3o_Leopoldo=2FRSOEmpregoS=C3=A3o?=
+ Leopoldo, Rio Grande do Sul, BrasilVisualizar vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355060=3FalertActio?=
+ =?utf-8?q?n=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ=5FQAAAXwEM?=
+ =?utf-8?q?FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhz?=
+ =?utf-8?q?UQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr?=
+ =?utf-8?q?4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhUuULjganPyU?=
+ =?utf-8?q?3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUi?=
+ =?utf-8?q?wOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBz?=
+ =?utf-8?q?g3qBsEw4UiNYxkRs&savedSearchId=3D604844914&refId=3Dafd00cb3-9d72-?=
+ =?utf-8?q?452f-a19a-e0f110777d53&trackingId=3DELsI4iQp0aCGBcg5HPNZSw%3D%3?=
+ =?utf-8?q?D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-email?=
+ =?utf-8?q?=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-7-member=5Fdetails=5Fmercado&trkEm?=
+ =?utf-8?q?ail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-7-member=5Fdetails=5F?=
+ =?utf-8?q?mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn?=
+ =?utf-8?q?%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2?=
+ =?utf-8?q?BDVDD0Z1BW1Q%3D%3D-------------------------------------------?=
+ =?utf-8?q?--------------ESTAGIARIO?= DE ENGENHARIA CIVIL - PORTO ALEGRE Em
+ Porto Alegre/RSOEmpregoPorto Alegre, Rio Grande do Sul, BrasilVisualizar
+ vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356308=3FalertActio?=
+ =?utf-8?q?n=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ=5FQAAAXwEM?=
+ =?utf-8?q?FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhz?=
+ =?utf-8?q?UQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr?=
+ =?utf-8?q?4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhUuULjganPyU?=
+ =?utf-8?q?3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUi?=
+ =?utf-8?q?wOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBz?=
+ =?utf-8?q?g3qBsEw4UiNYxkRs&savedSearchId=3D604844914&refId=3Dafd00cb3-9d72-?=
+ =?utf-8?q?452f-a19a-e0f110777d53&trackingId=3Do%2B1LD1lxSi%2BK4FCOpWX9Pg%?=
+ =?utf-8?q?3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-e?=
+ =?utf-8?q?mail=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-8-member=5Fdetails=5Fmercado&t?=
+ =?utf-8?q?rkEmail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-8-member=5Fdeta?=
+ =?utf-8?q?ils=5Fmercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi?=
+ =?utf-8?q?=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdw?=
+ =?utf-8?q?Sw%2BDVDD0Z1BW1Q%3D%3D---------------------------------------?=
+ =?utf-8?q?------------------ESTAGIARIO?= DE ENGENHARIA - GRAVATAI Em
+ =?utf-8?q?Gravata=C3=AD=2FRSOEmpregoGravata=C3=AD=2C?= Rio Grande do Sul,
+ BrasilVisualizar vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355572=3FalertActio?=
+ =?utf-8?q?n=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ=5FQAAAXwEM?=
+ =?utf-8?q?FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhz?=
+ =?utf-8?q?UQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr?=
+ =?utf-8?q?4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhUuULjganPyU?=
+ =?utf-8?q?3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUi?=
+ =?utf-8?q?wOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBz?=
+ =?utf-8?q?g3qBsEw4UiNYxkRs&savedSearchId=3D604844914&refId=3Dafd00cb3-9d72-?=
+ =?utf-8?q?452f-a19a-e0f110777d53&trackingId=3DbT3vmRxuwtJn35GBxtALpA%3D%3?=
+ =?utf-8?q?D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-email?=
+ =?utf-8?q?=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-9-member=5Fdetails=5Fmercado&trkEm?=
+ =?utf-8?q?ail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-9-member=5Fdetails=5F?=
+ =?utf-8?q?mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn?=
+ =?utf-8?q?%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2?=
+ =?utf-8?q?BDVDD0Z1BW1Q%3D%3D-------------------------------------------?=
+ =?utf-8?q?--------------ESTAGIARIO_DE_ENGENHARIA_DE_PRODU=C3=87=C3=83O_-?=
+ =?utf-8?q?_S=C3=83O_LEOPOLDO_Em_S=C3=A3o_Leopoldo=2FRSOEmpregoS=C3=A3o?=
+ Leopoldo, Rio Grande do Sul, BrasilVisualizar vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726357382=3FalertActio?=
+ =?utf-8?q?n=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ=5FQAAAXwEM?=
+ =?utf-8?q?FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhz?=
+ =?utf-8?q?UQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr?=
+ =?utf-8?q?4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhUuULjganPyU?=
+ =?utf-8?q?3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUi?=
+ =?utf-8?q?wOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBz?=
+ =?utf-8?q?g3qBsEw4UiNYxkRs&savedSearchId=3D604844914&refId=3Dafd00cb3-9d72-?=
+ =?utf-8?q?452f-a19a-e0f110777d53&trackingId=3Dh4ab2Ai4Olg2m9hG5LBc5Q%3D%3?=
+ =?utf-8?q?D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-email?=
+ =?utf-8?q?=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-10-member=5Fdetails=5Fmercado&trkE?=
+ =?utf-8?q?mail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-10-member=5Fdetail?=
+ =?utf-8?q?s=5Fmercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Du?=
+ =?utf-8?q?rn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw?=
+ =?utf-8?q?%2BDVDD0Z1BW1Q%3D%3D-----------------------------------------?=
+ =?utf-8?q?----------------ESTAGIARIO?= DE ENGENHARIA CIVIL - PORTO ALEGRE Em
+ Porto Alegre/RSOEmpregoPorto Alegre, Rio Grande do Sul, BrasilVisualizar
+ vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356310=3FalertActio?=
+ =?utf-8?q?n=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ=5FQAAAXwEM?=
+ =?utf-8?q?FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhz?=
+ =?utf-8?q?UQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr?=
+ =?utf-8?q?4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhUuULjganPyU?=
+ =?utf-8?q?3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUi?=
+ =?utf-8?q?wOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBz?=
+ =?utf-8?q?g3qBsEw4UiNYxkRs&savedSearchId=3D604844914&refId=3Dafd00cb3-9d72-?=
+ =?utf-8?q?452f-a19a-e0f110777d53&trackingId=3DwQ%2F26qvYKmyxowweUtBv1Q%3D?=
+ =?utf-8?q?%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-ema?=
+ =?utf-8?q?il=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-11-member=5Fdetails=5Fmercado&tr?=
+ =?utf-8?q?kEmail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-11-member=5Fdeta?=
+ =?utf-8?q?ils=5Fmercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi?=
+ =?utf-8?q?=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdw?=
+ =?utf-8?q?Sw%2BDVDD0Z1BW1Q%3D%3D---------------------------------------?=
+ =?utf-8?q?-------------------------------------------------------------?=
+ =?utf-8?q?--------------Veja?= as vagas para as quais =?utf-8?b?dm9jw6o=?=
+ seria um dos melhores candidatosExperimentar Premium =?utf-8?b?Z3LDoXRpczo=?=
+ =?utf-8?q?__https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fpremium=2Fproducts=2F=3Ffamily=3Djss&mi?=
+ =?utf-8?q?dToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&trk=3Deml-email=5Fjob?=
+ =?utf-8?q?=5Falert=5Fdigest=5F01-job=5Falert-19-premium=5Fupsell=5Ftop=5Fapplicant=5Fme?=
+ =?utf-8?q?rcado&trkEmail=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-19-pre?=
+ =?utf-8?q?mium=5Fupsell=5Ftop=5Fapplicant=5Fmercado-null-a89ral%7Ektswn4ds%7Ef7?=
+ =?utf-8?q?-null-neptune%2Fpremium%2Eproducts&lipi=3Durn%3Ali%3Apage%3Aema?=
+ =?utf-8?q?il=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D?=
+ =?utf-8?q?=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2E=2EGerencie?=
+ seus alertas de vaga:
+ =?utf-8?q?https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Falerts=3FmidToken=3DAQEhRl50ii?=
+ =?utf-8?q?dL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdi?=
+ =?utf-8?q?gest=5F01-footer-17-manage=5Falert&amp=3BtrkEmail=3Deml-email=5Fjob=5Fale?=
+ =?utf-8?q?rt=5Fdigest=5F01-footer-17-manage=5Falert-null-a89ral%7Ektswn4ds%7E?=
+ =?utf-8?q?f7-null-job%7Ealert%7Emanager&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3DC?=
+ =?utf-8?b?YW5jZWxhciBpbnNjcmnDp8Ojbzo=?=
+ =?utf-8?q?_https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&amp=3Blipi=3Du?=
+ =?utf-8?q?rn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw?=
+ =?utf-8?q?%2BDVDD0Z1BW1Q%3D%3D&amp=3Ba=3Djobs-jserp-search-mirror&amp=3BmidTo?=
+ =?utf-8?q?ken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Bek=3Demail=5Fjob?=
+ =?utf-8?q?=5Falert=5Fdigest=5F01&amp=3Bli=3D18&amp=3Bm=3Dfooter&amp=3Bts=3Ddelete=5Falert&a?=
+ =?utf-8?q?mp=3BalertAction=3Ddelete&amp=3BsavedSearchId=3D604844914Ajuda=3A?=
+ =?utf-8?q?_https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&lipi=3Durn%3?=
+ =?utf-8?q?Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BD?=
+ =?utf-8?q?VDD0Z1BW1Q%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEhRl50iidL-g?=
+ =?utf-8?q?&midSig=3D0SkvCFb3Z659Y1&ek=3Demail=5Fjob=5Falert=5Fdigest=5F01&li=3D43&m=3Df?=
+ =?utf-8?q?ooter&ts=3Dhelp&articleId=3D67Voc=C3=AA_est=C3=A1_recebendo_e-mails?=
+ de =?utf-8?b?bm90aWZpY2HDp8Ojbw==?= do LinkedIn.Este e-mail foi enviado para
+ Augusto Giani =?utf-8?q?=28Estagi=C3=A1rio?= na Qualidade da 3|Network em
+ Infortel Telecom Ltda).Saiba por que =?utf-8?q?inclu=C3=ADmos_isso=3A?=
+ =?utf-8?q?_https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&lipi=3Durn%3?=
+ =?utf-8?q?Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BD?=
+ =?utf-8?q?VDD0Z1BW1Q%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEhRl50iidL-g?=
+ =?utf-8?q?&midSig=3D0SkvCFb3Z659Y1&ek=3Demail=5Fjob=5Falert=5Fdigest=5F01&articleId?=
+ =?utf-8?b?PTQ3ODjCqQ==?= 2021 LinkedIn Ireland Unlimited Company, Wilton
+ Plaza, Wilton Place, Dublin 2. LinkedIn =?utf-8?b?w6k=?= um nome comercial
+ registrado da LinkedIn Ireland Unlimited Company. LinkedIn e a logomarca do
+ LinkedIn =?utf-8?b?c8Ojbw==?= marcas registradas do LinkedIn.
+HtmlBody: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html
+ xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"> <head> <meta
+ http-equiv="Content-Type" content="text/html;charset=utf-8"> <meta
+ name="HandheldFriendly" content="true"> <meta name="viewport"
+ content="width=device-width; initial-scale=0.666667; user-scalable=0"> <meta
+ name="viewport" content="width=device-width"> <title></title> <!--[if
+ mso]><style type="text/css">body {font-family: Helvetica Neue, Helvetica,
+ Arial, sans-serif;}.mercado-email-container {width: 512px !important;}h1, h2,
+ h3, h4, h5, h6 {font-weight: 700 !important;}</style><![endif]--> <!--[if
+ IE]><style type="text/css">.mercado-email-container {width: 512px
+ !important;}h1, h2, h3, h4, h5, h6 {font-weight: 700
+ !important;}</style><![endif]--> <style type="text/css">@media only screen
+ and (max-width:32em) { .mercado-email-container { width:100% !important; } }
+ @media only screen and (max-width:20em) {} @media only screen and
+ (max-device-width:30em) {} @media screen and (device-width:30em) and
+ (device-height:22.5em), screen and (device-width:22.5em) and
+ (device-height:30em), screen and (device-width:20em) and (device-height:15em)
+ {} @media screen and (-webkit-min-device-pixel-ratio:0) {} @media screen and
+ (max-device-width:25.88em) and (max-device-height:48.5em) {} @media only
+ screen and (max-width:32em) { .mercado-email-container { width:100%
+ !important; } } @media only screen and (max-width:20em) {} @media only screen
+ and (max-device-width:30em) {} @media screen and (device-width:30em) and
+ (device-height:22.5em), screen and (device-width:22.5em) and
+ (device-height:30em), screen and (device-width:20em) and (device-height:15em)
+ {} @media screen and (-webkit-min-device-pixel-ratio:0) {} @media screen and
+ (max-device-width:25.88em) and (max-device-height:48.5em) {} </style> </head>
+ <body style="padding:0;margin:0 auto;-webkit-text-size-adjust:100%;width:100%
+ !important;-ms-text-size-adjust:100%;font-family:Helvetica
+ Neue,Helvetica,Arial,sans-serif;"> <div
+ =?utf-8?q?style=3D=22overflow=3Ahidden=3Bcolor=3Atransparent=3Bvisibility=3Ahidden=3Bms?=
+ =?utf-8?q?o-hide=3Aall=3Bwidth=3A0=3Bfont-size=3A0=3Bopacity=3A0=3Bheight=3A0=3B=22=3E?=
+ Visualizar vagas em: Porto Alegre, Rio Grande do Sul, Brasil
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ =?utf-8?b?4oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCM?=
+ =?utf-8?b?Jm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5i?=
+ =?utf-8?b?c3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A74oCMJm5ic3A7?=
+ </div> <table role="presentation" align="center" border="0" cellspacing="0"
+ cellpadding="0" width="100%" bgcolor="#F3F2EF"
+ =?utf-8?q?style=3D=22background-color=3A#F3F2EF=3Btable-layout=3Afixed=3B-webkit-te?=
+ =?utf-8?q?xt-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-table-lspace=3A0pt?=
+ =?utf-8?q?=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody> <tr> <td
+ align="center"
+ =?utf-8?q?style=3D=22padding-top=3A24px=3B-webkit-text-size-adjust=3A100%=3Bmso-tab?=
+ =?utf-8?q?le-rspace=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B?=
+ =?utf-8?q?=22=3E?= <center style="width:100%;"> <table role="presentation"
+ border="0" class="mercado-email-container" cellspacing="0" cellpadding="0"
+ width="512" bgcolor="#FFFFFF" style="background-color:#FFFFFF;margin:0
+ =?utf-8?q?auto=3Bmax-width=3A512px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-?=
+ =?utf-8?q?rspace=3A0pt=3Bwidth=3Ainherit=3Bmso-table-lspace=3A0pt=3B-ms-text-size-a?=
+ =?utf-8?q?djust=3A100%=3B=22=3E?= <tbody> <tr> <td bgcolor="#FFFFFF"
+ style="background-color:#FFFFFF;padding:18px 24px 0
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ style="-webkit-text-size-adjust:100%;mso-table-rspace:0pt;width:100%
+ !important;mso-table-lspace:0pt;-ms-text-size-adjust:100%;min-width:100%
+ !important;"> <tbody> <tr> <td align="left" valign="middle"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Ffeed=2F=3FmidToken=3DAQEhRl50ii?=
+ =?utf-8?q?dL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdi?=
+ =?utf-8?q?gest=5F01-header-39-home&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdiges?=
+ =?utf-8?q?t=5F01-header-39-home-null-a89ral%7Ektswn4ds%7Ef7-null-neptune%?=
+ =?utf-8?q?2Ffeed&amp=3Blipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdiges?=
+ =?utf-8?q?t=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E_=3Cimg_alt=3D=22LinkedIn=22_border=3D=220=22?=
+ =?utf-8?q?_src=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fdms=2Flogo=3FmidToken=3DAQEhRl50?=
+ =?utf-8?q?iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5F?=
+ =?utf-8?q?digest=5F01-null-47-null&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdiges?=
+ =?utf-8?q?t=5F01-null-47-null-null-a89ral%7Ektswn4ds%7Ef7-null-comms%7Eba?=
+ =?utf-8?q?dging%7Edynamic&amp=3Blipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Fal?=
+ =?utf-8?q?ert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp=3B=5Fsig=3D3eQmc?=
+ =?utf-8?q?7tXJ659Y1=22_height=3D=2238=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E?= <td
+ valign="middle" width="100%" align="right"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fin=2Faugustogiani=3FmidToken=3D?=
+ =?utf-8?q?AQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjo?=
+ =?utf-8?q?b=5Falert=5Fdigest=5F01-header-48-profile&amp=3BtrkEmail=3Deml-email=5Fjo?=
+ =?utf-8?q?b=5Falert=5Fdigest=5F01-header-48-profile-null-a89ral%7Ektswn4ds%7E?=
+ =?utf-8?q?f7-null-neptune%2Fprofile%7Evanity%2Eview&amp=3Blipi=3Durn%3Ali%3?=
+ =?utf-8?q?Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z?=
+ =?utf-8?q?1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bmargin=3A0=3Bcolor=3A#0A66C2=3B-webkit-text-siz?=
+ =?utf-8?q?e-adjust=3A100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-t?=
+ =?utf-8?q?ext-size-adjust=3A100%=3B=22=3E?= <table role="presentation"
+ border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td align="left" valign="middle" style="padding:0 0 0
+ =?utf-8?q?10px=3Bpadding-top=3A7px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-?=
+ =?utf-8?q?rspace=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E=3C?=
+ =?utf-8?q?=2Ftd=3E_=3Ctd_valign=3D=22middle=22_width=3D=2240=22?=
+ =?utf-8?q?_style=3D=22padding-top=3A7px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bpadding-left=3A10px=3Bmso-table-lspace=3A0pt=3B-ms-text-?=
+ =?utf-8?q?size-adjust=3A100%=3B=22=3E?= <img alt="Augusto Giani" border="0"
+ height="32" width="32"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fmedia-exp1=2Elicdn=2Ecom=2Fdms=2Fimage=2FC4E03AQHT6iYQTpv9?=
+ =?utf-8?q?IQ=2Fprofile-displayphoto-shrink=5F100=5F100=2F0=2F1609543547171=3Fe=3D2159?=
+ =?utf-8?q?024400&amp=3Bv=3Dbeta&amp=3Bt=3DrV0KRb-rCSTzj63pR8sd-ZiXiTEYCwV9iqn0i?=
+ =?utf-8?q?NKkEdY=22?=
+ =?utf-8?q?_style=3D=22border-radius=3A50%=3Boutline=3Anone=3B-ms-interpolation-mode=3A?=
+ =?utf-8?q?bicubic=3Bcolor=3A#FFFFFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Ftd=3E?=
+ </tr> </tbody> </table></a></td> </tr> </tbody> </table></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td style="padding:24px 24px
+ =?utf-8?q?8px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-ta?=
+ =?utf-8?q?ble-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ch2?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A24px=3B?=
+ =?utf-8?q?line-height=3A1=2E333=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fsearch=3FgeoId=3D1025567?=
+ =?utf-8?q?49&amp=3BsavedSearchId=3D604844914&amp=3Borigin=3DJOB=5FALERT=5FEMAIL&amp?=
+ =?utf-8?q?=3Bf=5FTPR=3Da1632071395-&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0S?=
+ =?utf-8?q?kvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-?=
+ =?utf-8?q?5-title=5Fjserp=5Fheader=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-5-title=5Fjserp=5Fheader=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Ejserp%7Esearch&amp=3Blipi=3Durn%3Ali?=
+ =?utf-8?q?%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD?=
+ =?utf-8?q?0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22?= #242424;display:inline;="">Seu alerta de vaga
+ para <span =?utf-8?q?style=3D=22font-weight=3A700=3B=22=3EEstagi=C3=A1rio?=
+ de engenharia</span></a></h2></td> </tr> </tbody> </table></td> </tr> <tr>
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td style="padding:0 24px
+ =?utf-8?q?16px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A16px=3B?=
+ =?utf-8?q?line-height=3A1=2E5=3B=22=3E11?= vagas novas em: Porto Alegre, Rio
+ Grande do Sul, Brasil correspondem
+ =?utf-8?q?=C3=A0s_suas_prefer=C3=AAncias=2E=3C=2Fp=3E=3C=2Ftd=3E?= </tr>
+ </tbody> </table></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ cellspacing="0" cellpadding="0" style="padding:10px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody
+ valign="top" style="table-layout:fixed;vertical-align:top;width:100%;"> <tr>
+ <td width="56"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bwid?=
+ =?utf-8?q?th=3A56px=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpaddin?=
+ =?utf-8?q?g-right=3A16px=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726352513=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Dc1kI9?=
+ =?utf-8?q?aRVwq80n5ok1kWQfg%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-6-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-6-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <img alt="OEmprego" border="0" height="48"
+ width="48"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons?=
+ =?utf-8?q?%2Fghost=5Fphoenix=5Fperson=5F100x100=5Fv1=2Epng=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3Ctd_align=3D=22left=22?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bpad?=
+ =?utf-8?q?ding-left=3A0=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bte?=
+ =?utf-8?q?xt-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726352513=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Dc1kI9?=
+ =?utf-8?q?aRVwq80n5ok1kWQfg%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-6-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-6-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <table role="presentation" border="0"
+ cellspacing="0" cellpadding="0" width="100%" valign="top"
+ =?utf-8?q?style=3D=22table-layout=3Afixed=3B-webkit-text-size-adjust=3A100%=3Bmso-t?=
+ =?utf-8?q?able-rspace=3A0pt=3Bvertical-align=3Atop=3Bwidth=3A100%=3Bmso-table-lspac?=
+ =?utf-8?q?e=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bpadding-bottom=3A4px=3B-ms-text-size-adjust=3A100?=
+ =?utf-8?q?%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726352513=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Dc1kI9?=
+ =?utf-8?q?aRVwq80n5ok1kWQfg%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-6-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-6-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bfont-weight=3A700=3Btext-decoration=3Anone=3Bdisplay=3Ainline-bloc?=
+ =?utf-8?q?k=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3EESTAGI=C3=81RIO?=
+ DE ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS</a></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A14px=3B?=
+ =?utf-8?q?line-height=3A1=2E429=3B=22=3EOEmprego_=C2=B7?= Porto Alegre, Rio
+ Grande do Sul, Brasil</p></td> </tr> <tr> <td width="100%"
+ =?utf-8?q?style=3D=22padding-top=3A8px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bwidth=3A100%=3Bmso-table-lspace=3A0pt=3B-ms-text-size-ad?=
+ =?utf-8?q?just=3A100%=3B=22=3E?= <table role="presentation" align="left"
+ border="0" cellspacing="0" cellpadding="0" width="initial"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr style="color:black;"></tr> </tbody> </table></td> </tr> </tbody>
+ </table></a></td> </tr> </tbody> </table> <table cellspacing="0"
+ cellpadding="0" style="padding:10px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody
+ valign="top" style="table-layout:fixed;vertical-align:top;width:100%;"> <tr>
+ <td width="56"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bwid?=
+ =?utf-8?q?th=3A56px=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpaddin?=
+ =?utf-8?q?g-right=3A16px=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355060=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DELsI4?=
+ =?utf-8?q?iQp0aCGBcg5HPNZSw%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-7-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-7-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <img alt="OEmprego" border="0" height="48"
+ width="48"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons?=
+ =?utf-8?q?%2Fghost=5Fphoenix=5Fperson=5F100x100=5Fv1=2Epng=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3Ctd_align=3D=22left=22?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bpad?=
+ =?utf-8?q?ding-left=3A0=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bte?=
+ =?utf-8?q?xt-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355060=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DELsI4?=
+ =?utf-8?q?iQp0aCGBcg5HPNZSw%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-7-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-7-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <table role="presentation" border="0"
+ cellspacing="0" cellpadding="0" width="100%" valign="top"
+ =?utf-8?q?style=3D=22table-layout=3Afixed=3B-webkit-text-size-adjust=3A100%=3Bmso-t?=
+ =?utf-8?q?able-rspace=3A0pt=3Bvertical-align=3Atop=3Bwidth=3A100%=3Bmso-table-lspac?=
+ =?utf-8?q?e=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bpadding-bottom=3A4px=3B-ms-text-size-adjust=3A100?=
+ =?utf-8?q?%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355060=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DELsI4?=
+ =?utf-8?q?iQp0aCGBcg5HPNZSw%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-7-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-7-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bfont-weight=3A700=3Btext-decoration=3Anone=3Bdisplay=3Ainline-bloc?=
+ =?utf-8?q?k=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3EESTAGI=C3=81RIO?=
+ DE ENGENHARIA DE =?utf-8?b?UFJPRFXDh8ODTyAtIFPDg08gTEVPUE9MRE8gRW0gU8Ojbw==?=
+ Leopoldo/RS</a></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A14px=3B?=
+ =?utf-8?q?line-height=3A1=2E429=3B=22=3EOEmprego_=C2=B7_S=C3=A3o?= Leopoldo,
+ Rio Grande do Sul, Brasil</p></td> </tr> <tr> <td width="100%"
+ =?utf-8?q?style=3D=22padding-top=3A8px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bwidth=3A100%=3Bmso-table-lspace=3A0pt=3B-ms-text-size-ad?=
+ =?utf-8?q?just=3A100%=3B=22=3E?= <table role="presentation" align="left"
+ border="0" cellspacing="0" cellpadding="0" width="initial"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr style="color:black;"></tr> </tbody> </table></td> </tr> </tbody>
+ </table></a></td> </tr> </tbody> </table> <table cellspacing="0"
+ cellpadding="0" style="padding:10px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody
+ valign="top" style="table-layout:fixed;vertical-align:top;width:100%;"> <tr>
+ <td width="56"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bwid?=
+ =?utf-8?q?th=3A56px=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpaddin?=
+ =?utf-8?q?g-right=3A16px=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356308=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Do%2B1?=
+ =?utf-8?q?LD1lxSi%2BK4FCOpWX9Pg%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3Bm?=
+ =?utf-8?q?idSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-jo?=
+ =?utf-8?q?b=5Falert-8-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Fa?=
+ =?utf-8?q?lert=5Fdigest=5F01-job=5Falert-8-member=5Fdetails=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3A?=
+ =?utf-8?q?email=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D?=
+ =?utf-8?q?%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <img alt="OEmprego" border="0" height="48"
+ width="48"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons?=
+ =?utf-8?q?%2Fghost=5Fphoenix=5Fperson=5F100x100=5Fv1=2Epng=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3Ctd_align=3D=22left=22?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bpad?=
+ =?utf-8?q?ding-left=3A0=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bte?=
+ =?utf-8?q?xt-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356308=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Do%2B1?=
+ =?utf-8?q?LD1lxSi%2BK4FCOpWX9Pg%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3Bm?=
+ =?utf-8?q?idSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-jo?=
+ =?utf-8?q?b=5Falert-8-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Fa?=
+ =?utf-8?q?lert=5Fdigest=5F01-job=5Falert-8-member=5Fdetails=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3A?=
+ =?utf-8?q?email=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D?=
+ =?utf-8?q?%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <table role="presentation" border="0"
+ cellspacing="0" cellpadding="0" width="100%" valign="top"
+ =?utf-8?q?style=3D=22table-layout=3Afixed=3B-webkit-text-size-adjust=3A100%=3Bmso-t?=
+ =?utf-8?q?able-rspace=3A0pt=3Bvertical-align=3Atop=3Bwidth=3A100%=3Bmso-table-lspac?=
+ =?utf-8?q?e=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bpadding-bottom=3A4px=3B-ms-text-size-adjust=3A100?=
+ =?utf-8?q?%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356308=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Do%2B1?=
+ =?utf-8?q?LD1lxSi%2BK4FCOpWX9Pg%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3Bm?=
+ =?utf-8?q?idSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-jo?=
+ =?utf-8?q?b=5Falert-8-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Fa?=
+ =?utf-8?q?lert=5Fdigest=5F01-job=5Falert-8-member=5Fdetails=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3A?=
+ =?utf-8?q?email=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D?=
+ =?utf-8?q?%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bfont-weight=3A700=3Btext-decoration=3Anone=3Bdisplay=3Ainline-bloc?=
+ =?utf-8?q?k=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3EESTAGIARIO?=
+ DE ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS</a></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A14px=3B?=
+ =?utf-8?q?line-height=3A1=2E429=3B=22=3EOEmprego_=C2=B7?= Porto Alegre, Rio
+ Grande do Sul, Brasil</p></td> </tr> <tr> <td width="100%"
+ =?utf-8?q?style=3D=22padding-top=3A8px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bwidth=3A100%=3Bmso-table-lspace=3A0pt=3B-ms-text-size-ad?=
+ =?utf-8?q?just=3A100%=3B=22=3E?= <table role="presentation" align="left"
+ border="0" cellspacing="0" cellpadding="0" width="initial"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr style="color:black;"></tr> </tbody> </table></td> </tr> </tbody>
+ </table></a></td> </tr> </tbody> </table> <table cellspacing="0"
+ cellpadding="0" style="padding:10px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody
+ valign="top" style="table-layout:fixed;vertical-align:top;width:100%;"> <tr>
+ <td width="56"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bwid?=
+ =?utf-8?q?th=3A56px=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpaddin?=
+ =?utf-8?q?g-right=3A16px=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355572=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DbT3vm?=
+ =?utf-8?q?RxuwtJn35GBxtALpA%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-9-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-9-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <img alt="OEmprego" border="0" height="48"
+ width="48"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons?=
+ =?utf-8?q?%2Fghost=5Fphoenix=5Fperson=5F100x100=5Fv1=2Epng=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3Ctd_align=3D=22left=22?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bpad?=
+ =?utf-8?q?ding-left=3A0=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bte?=
+ =?utf-8?q?xt-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355572=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DbT3vm?=
+ =?utf-8?q?RxuwtJn35GBxtALpA%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-9-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-9-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <table role="presentation" border="0"
+ cellspacing="0" cellpadding="0" width="100%" valign="top"
+ =?utf-8?q?style=3D=22table-layout=3Afixed=3B-webkit-text-size-adjust=3A100%=3Bmso-t?=
+ =?utf-8?q?able-rspace=3A0pt=3Bvertical-align=3Atop=3Bwidth=3A100%=3Bmso-table-lspac?=
+ =?utf-8?q?e=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bpadding-bottom=3A4px=3B-ms-text-size-adjust=3A100?=
+ =?utf-8?q?%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726355572=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DbT3vm?=
+ =?utf-8?q?RxuwtJn35GBxtALpA%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-9-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert?=
+ =?utf-8?q?=5Fdigest=5F01-job=5Falert-9-member=5Fdetails=5Fmercado-null-a89ral%7Ek?=
+ =?utf-8?q?tswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bfont-weight=3A700=3Btext-decoration=3Anone=3Bdisplay=3Ainline-bloc?=
+ =?utf-8?q?k=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3EESTAGIARIO?=
+ DE ENGENHARIA - GRAVATAI Em
+ =?utf-8?q?Gravata=C3=AD=2FRS=3C=2Fa=3E=3C=2Ftd=3E_=3C=2Ftr=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A14px=3B?=
+ =?utf-8?q?line-height=3A1=2E429=3B=22=3EOEmprego_=C2=B7_Gravata=C3=AD=2C?=
+ Rio Grande do Sul, Brasil</p></td> </tr> <tr> <td width="100%"
+ =?utf-8?q?style=3D=22padding-top=3A8px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bwidth=3A100%=3Bmso-table-lspace=3A0pt=3B-ms-text-size-ad?=
+ =?utf-8?q?just=3A100%=3B=22=3E?= <table role="presentation" align="left"
+ border="0" cellspacing="0" cellpadding="0" width="initial"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr style="color:black;"></tr> </tbody> </table></td> </tr> </tbody>
+ </table></a></td> </tr> </tbody> </table> <table cellspacing="0"
+ cellpadding="0" style="padding:10px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody
+ valign="top" style="table-layout:fixed;vertical-align:top;width:100%;"> <tr>
+ <td width="56"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bwid?=
+ =?utf-8?q?th=3A56px=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpaddin?=
+ =?utf-8?q?g-right=3A16px=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726357382=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Dh4ab2?=
+ =?utf-8?q?Ai4Olg2m9hG5LBc5Q%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-10-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Faler?=
+ =?utf-8?q?t=5Fdigest=5F01-job=5Falert-10-member=5Fdetails=5Fmercado-null-a89ral%7?=
+ =?utf-8?q?Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aem?=
+ =?utf-8?q?ail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3?=
+ =?utf-8?q?D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <img alt="OEmprego" border="0" height="48"
+ width="48"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons?=
+ =?utf-8?q?%2Fghost=5Fphoenix=5Fperson=5F100x100=5Fv1=2Epng=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3Ctd_align=3D=22left=22?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bpad?=
+ =?utf-8?q?ding-left=3A0=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bte?=
+ =?utf-8?q?xt-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726357382=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Dh4ab2?=
+ =?utf-8?q?Ai4Olg2m9hG5LBc5Q%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-10-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Faler?=
+ =?utf-8?q?t=5Fdigest=5F01-job=5Falert-10-member=5Fdetails=5Fmercado-null-a89ral%7?=
+ =?utf-8?q?Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aem?=
+ =?utf-8?q?ail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3?=
+ =?utf-8?q?D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <table role="presentation" border="0"
+ cellspacing="0" cellpadding="0" width="100%" valign="top"
+ =?utf-8?q?style=3D=22table-layout=3Afixed=3B-webkit-text-size-adjust=3A100%=3Bmso-t?=
+ =?utf-8?q?able-rspace=3A0pt=3Bvertical-align=3Atop=3Bwidth=3A100%=3Bmso-table-lspac?=
+ =?utf-8?q?e=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bpadding-bottom=3A4px=3B-ms-text-size-adjust=3A100?=
+ =?utf-8?q?%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726357382=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3Dh4ab2?=
+ =?utf-8?q?Ai4Olg2m9hG5LBc5Q%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSi?=
+ =?utf-8?q?g=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Fal?=
+ =?utf-8?q?ert-10-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Faler?=
+ =?utf-8?q?t=5Fdigest=5F01-job=5Falert-10-member=5Fdetails=5Fmercado-null-a89ral%7?=
+ =?utf-8?q?Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3Aem?=
+ =?utf-8?q?ail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3?=
+ =?utf-8?q?D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bfont-weight=3A700=3Btext-decoration=3Anone=3Bdisplay=3Ainline-bloc?=
+ =?utf-8?q?k=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3EESTAGIARIO_DE?=
+ ENGENHARIA DE =?utf-8?b?UFJPRFXDh8ODTyAtIFPDg08gTEVPUE9MRE8gRW0gU8Ojbw==?=
+ Leopoldo/RS</a></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A14px=3B?=
+ =?utf-8?q?line-height=3A1=2E429=3B=22=3EOEmprego_=C2=B7_S=C3=A3o?= Leopoldo,
+ Rio Grande do Sul, Brasil</p></td> </tr> <tr> <td width="100%"
+ =?utf-8?q?style=3D=22padding-top=3A8px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bwidth=3A100%=3Bmso-table-lspace=3A0pt=3B-ms-text-size-ad?=
+ =?utf-8?q?just=3A100%=3B=22=3E?= <table role="presentation" align="left"
+ border="0" cellspacing="0" cellpadding="0" width="initial"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr style="color:black;"></tr> </tbody> </table></td> </tr> </tbody>
+ </table></a></td> </tr> </tbody> </table> <table cellspacing="0"
+ cellpadding="0" style="padding:10px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <tbody
+ valign="top" style="table-layout:fixed;vertical-align:top;width:100%;"> <tr>
+ <td width="56"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bwid?=
+ =?utf-8?q?th=3A56px=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpaddin?=
+ =?utf-8?q?g-right=3A16px=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356310=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DwQ%2F?=
+ =?utf-8?q?26qvYKmyxowweUtBv1Q%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3Bmid?=
+ =?utf-8?q?Sig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5F?=
+ =?utf-8?q?alert-11-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Fal?=
+ =?utf-8?q?ert=5Fdigest=5F01-job=5Falert-11-member=5Fdetails=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3A?=
+ =?utf-8?q?email=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D?=
+ =?utf-8?q?%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <img alt="OEmprego" border="0" height="48"
+ width="48"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons?=
+ =?utf-8?q?%2Fghost=5Fphoenix=5Fperson=5F100x100=5Fv1=2Epng=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3Ctd_align=3D=22left=22?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bpad?=
+ =?utf-8?q?ding-left=3A0=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bte?=
+ =?utf-8?q?xt-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356310=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DwQ%2F?=
+ =?utf-8?q?26qvYKmyxowweUtBv1Q%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3Bmid?=
+ =?utf-8?q?Sig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5F?=
+ =?utf-8?q?alert-11-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Fal?=
+ =?utf-8?q?ert=5Fdigest=5F01-job=5Falert-11-member=5Fdetails=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3A?=
+ =?utf-8?q?email=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D?=
+ =?utf-8?q?%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3B-ms-text-size-?=
+ =?utf-8?q?adjust=3A100%=3B=22=3E?= <table role="presentation" border="0"
+ cellspacing="0" cellpadding="0" width="100%" valign="top"
+ =?utf-8?q?style=3D=22table-layout=3Afixed=3B-webkit-text-size-adjust=3A100%=3Bmso-t?=
+ =?utf-8?q?able-rspace=3A0pt=3Bvertical-align=3Atop=3Bwidth=3A100%=3Bmso-table-lspac?=
+ =?utf-8?q?e=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bpadding-bottom=3A4px=3B-ms-text-size-adjust=3A100?=
+ =?utf-8?q?%=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fview=2F2726356310=3Faler?=
+ =?utf-8?q?tAction=3Dmarkasviewed&amp=3BsavedSearchAuthToken=3D1%26AQFDf-wce-E?=
+ =?utf-8?q?Q=5FQAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz?=
+ =?utf-8?q?RfoTfCTLhzUQfbuLCq=5Fl78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBE?=
+ =?utf-8?q?AYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR=5FsapiaZeZBC=5F=5F5e3QKlY=5F83MM2EhU?=
+ =?utf-8?q?uULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17t?=
+ =?utf-8?q?twUZQ04vUiwOjzigPpnlh7Llnl7g28fJ=5FOfES4gwZoYvBpGA45yURjsc%26AU?=
+ =?utf-8?q?scwTS9QGBzg3qBsEw4UiNYxkRs&amp=3BsavedSearchId=3D604844914&amp=3Bre?=
+ =?utf-8?q?fId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp=3BtrackingId=3DwQ%2F?=
+ =?utf-8?q?26qvYKmyxowweUtBv1Q%3D%3D&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3Bmid?=
+ =?utf-8?q?Sig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5F?=
+ =?utf-8?q?alert-11-member=5Fdetails=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Fal?=
+ =?utf-8?q?ert=5Fdigest=5F01-job=5Falert-11-member=5Fdetails=5Fmercado-null-a89ral?=
+ =?utf-8?q?%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp=3Blipi=3Durn%3Ali%3Apage%3A?=
+ =?utf-8?q?email=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D?=
+ =?utf-8?q?%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Bfont-weight=3A700=3Btext-decoration=3Anone=3Bdisplay=3Ainline-bloc?=
+ =?utf-8?q?k=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3EESTAGIARIO?=
+ DE ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS</a></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A14px=3B?=
+ =?utf-8?q?line-height=3A1=2E429=3B=22=3EOEmprego_=C2=B7?= Porto Alegre, Rio
+ Grande do Sul, Brasil</p></td> </tr> <tr> <td width="100%"
+ =?utf-8?q?style=3D=22padding-top=3A8px=3B-webkit-text-size-adjust=3A100%=3Bmso-tabl?=
+ =?utf-8?q?e-rspace=3A0pt=3Bwidth=3A100%=3Bmso-table-lspace=3A0pt=3B-ms-text-size-ad?=
+ =?utf-8?q?just=3A100%=3B=22=3E?= <table role="presentation" align="left"
+ border="0" cellspacing="0" cellpadding="0" width="initial"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr style="color:black;"></tr> </tbody> </table></td> </tr> </tbody>
+ </table></a></td> </tr> </tbody> </table></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td style="padding:14px 24px
+ =?utf-8?q?36px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ border="0" cellpadding="0" cellspacing="0" role="presentation" align="left"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bdis?=
+ =?utf-8?q?play=3Ainline-block=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A1?=
+ =?utf-8?q?00%=3B=22=3E?= <tbody> <tr> <td align="center" valign="middle"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ =?utf-8?q?=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fsearch=3FgeoId=3D1025567?=
+ =?utf-8?q?49&amp=3BsavedSearchId=3D604844914&amp=3Borigin=3DJOB=5FALERT=5FEMAIL&amp?=
+ =?utf-8?q?=3Bf=5FTPR=3Da1632071395-&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0S?=
+ =?utf-8?q?kvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-?=
+ =?utf-8?q?4-title=5Fjserp=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdigest?=
+ =?utf-8?q?=5F01-job=5Falert-4-title=5Fjserp=5Fmercado-null-a89ral%7Ektswn4ds%7E?=
+ =?utf-8?q?f7-null-jobs%7Ejserp%7Esearch&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bword-wrap=3Anormal=3Bcolor=3A#0A66C2=3Bword-bre?=
+ =?utf-8?q?ak=3Anormal=3Bwhite-space=3Anormal=3B-webkit-text-size-adjust=3A100%=3Bdi?=
+ =?utf-8?q?splay=3Ablock=3Btext-decoration=3Anone=3B-ms-text-size-adjust=3A100%=3Bov?=
+ =?utf-8?q?erflow-wrap=3Anormal=3Btext-align=3Acenter=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td bgcolor="#0A66C2" style="padding:12px
+ =?utf-8?q?24px=3Bcolor=3A#FFFFFF=3B-webkit-text-size-adjust=3A100%=3Bfont-weight=3A?=
+ =?utf-8?q?400=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3Bfont-size=3A16px=3B?=
+ =?utf-8?q?-ms-text-size-adjust=3A100%=3Bline-height=3A1=2E25em=3Bborder-color=3A#0A?=
+ =?utf-8?q?66C2=3Bbackground-color=3A#0A66C2=3Bborder-radius=3A34px=3Bmso-table-rs?=
+ =?utf-8?q?pace=3A0pt=3Bmso-table-lspace=3A0pt=3Bborder-width=3A1px=3Bborder-style=3As?=
+ =?utf-8?q?olid=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Fsearch=3FgeoId=3D1025567?=
+ =?utf-8?q?49&amp=3BsavedSearchId=3D604844914&amp=3Borigin=3DJOB=5FALERT=5FEMAIL&amp?=
+ =?utf-8?q?=3Bf=5FTPR=3Da1632071395-&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0S?=
+ =?utf-8?q?kvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-?=
+ =?utf-8?q?4-title=5Fjserp=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdigest?=
+ =?utf-8?q?=5F01-job=5Falert-4-title=5Fjserp=5Fmercado-null-a89ral%7Ektswn4ds%7E?=
+ =?utf-8?q?f7-null-jobs%7Ejserp%7Esearch&amp=3Blipi=3Durn%3Ali%3Apage%3Aemai?=
+ =?utf-8?q?l=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bword-wrap=3Anormal=3Bcolor=3A#FFFFFF=3Bword-bre?=
+ =?utf-8?q?ak=3Anormal=3Bwhite-space=3Anormal=3B-webkit-text-size-adjust=3A100%=3Bdi?=
+ =?utf-8?q?splay=3Ablock=3Btext-decoration=3Anone=3B-ms-text-size-adjust=3A100%=3Bov?=
+ =?utf-8?q?erflow-wrap=3Anormal=3Btext-align=3Acenter=3B=22=3EVer?= todas as
+ vagas</a></td> </tr> </tbody> </table></a></td> </tr> <!--[if !mso]><!-->
+ <tr> <td height="3"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="1" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:1px;font-size:1px;line-height:1px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> <!--<![endif]--> </tbody> </table></td> </tr>
+ </tbody> </table></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ style="padding:0 24px
+ =?utf-8?q?24px=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-t?=
+ =?utf-8?q?able-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Chr?=
+ =?utf-8?q?_style=3D=22background-color=3A#D9D9D9=3Bmargin=3A0=3Bcolor=3A#D9D9D9=3Bborder?=
+ =?utf-8?q?-color=3A#D9D9D9=3Bborder-width=3A0=3Bborder-style=3Asolid=3Bheight=3A1px=3B=22?=
+ =?utf-8?q?=3E=3C=2Ftd=3E_=3C=2Ftr=3E_=3Ctr=3E_=3Ctd?=
+ =?utf-8?q?_style=3D=22padding-top=3A32px=3B-webkit-text-size-adjust=3A100%=3Bmso-tab?=
+ =?utf-8?q?le-rspace=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B?=
+ =?utf-8?q?=22=3E=3Cimg?=
+ =?utf-8?q?_src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Ficons%2Ficon=5Fpr?=
+ =?utf-8?q?emium=5F8x8=5Fv1=2Epng=22_border=3D=220=22_width=3D=2210=22_height=3D=2210=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3Bpadding-right=3A8px=3B=22=3E=3Cimg?=
+ =?utf-8?q?_src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Femail%2Flogos%2Flogo=5Fpr?=
+ =?utf-8?q?emium=5Fno=5Ficon=5F120x18=5Fv1=2Epng=22?= border="0" alt="premium"
+ width="60" height="10"
+ =?utf-8?q?style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Ftd=3E?= </tr> <tr> <td
+ align="center"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Bpadding-bottom=3A16?=
+ =?utf-8?q?px=3Btext-align=3Acenter=3B=22=3E?= <img alt="Augusto Giani"
+ border="0" height="128" width="128"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fmedia-exp1=2Elicdn=2Ecom=2Fdms=2Fimage=2FC4E03AQHT6iYQTpv9?=
+ =?utf-8?q?IQ=2Fprofile-displayphoto-shrink=5F100=5F100=2F0=2F1609543547171=3Fe=3D2159?=
+ =?utf-8?q?024400&amp=3Bv=3Dbeta&amp=3Bt=3DrV0KRb-rCSTzj63pR8sd-ZiXiTEYCwV9iqn0i?=
+ =?utf-8?q?NKkEdY=22?=
+ =?utf-8?q?_style=3D=22border-radius=3A50%=3Boutline=3Anone=3B-ms-interpolation-mode=3A?=
+ =?utf-8?q?bicubic=3Bcolor=3A#FFFFFF=3Btext-decoration=3Anone=3B=22=3E=3C=2Ftd=3E?=
+ </tr> <tr> <td align="center"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Btext-align=3Acenter?=
+ =?utf-8?q?=3B=22=3E_=3Ch2?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A20px=3B?=
+ =?utf-8?q?line-height=3A1=2E2=3B=22=3EVeja?= as vagas para as quais
+ =?utf-8?b?dm9jw6o=?= seria um bom candidato</h2></td> </tr> <tr> <td
+ align="center" style="padding:16px
+ =?utf-8?q?0=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-tabl?=
+ =?utf-8?q?e-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Btext-align=3Acenter=3B=22=3E?=
+ <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+ align="center"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bdis?=
+ =?utf-8?q?play=3Ainline-block=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A1?=
+ =?utf-8?q?00%=3B=22=3E?= <tbody> <tr> <td align="center" valign="middle"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3Bfont-size=3A16px=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ =?utf-8?q?=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fpremium=2Fproducts=2F=3Ffamily=3D?=
+ =?utf-8?q?jss&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp?=
+ =?utf-8?q?=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-19-premium=5Fupsel?=
+ =?utf-8?q?l=5Ftop=5Fapplicant=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdige?=
+ =?utf-8?q?st=5F01-job=5Falert-19-premium=5Fupsell=5Ftop=5Fapplicant=5Fmercado-null-?=
+ =?utf-8?q?a89ral%7Ektswn4ds%7Ef7-null-neptune%2Fpremium%2Eproducts&amp=3B?=
+ =?utf-8?q?lipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74B?=
+ =?utf-8?q?BsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bword-wrap=3Anormal=3Bcolor=3A#0A66C2=3Bword-bre?=
+ =?utf-8?q?ak=3Anormal=3Bwhite-space=3Anormal=3B-webkit-text-size-adjust=3A100%=3Bdi?=
+ =?utf-8?q?splay=3Ablock=3Btext-decoration=3Anone=3B-ms-text-size-adjust=3A100%=3Bov?=
+ =?utf-8?q?erflow-wrap=3Anormal=3Btext-align=3Acenter=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td bgcolor="#FFFFFF" style="padding:12px
+ =?utf-8?q?24px=3Bcolor=3A#666666=3B-webkit-text-size-adjust=3A100%=3Bfont-weight=3A?=
+ =?utf-8?q?400=3Bdisplay=3Ainline-block=3Btext-decoration=3Anone=3Bfont-size=3A16px=3B?=
+ =?utf-8?q?-ms-text-size-adjust=3A100%=3Bline-height=3A1=2E25em=3Bborder-color=3A#0a?=
+ =?utf-8?q?66c2=3Bbackground-color=3A#FFFFFF=3Bborder-radius=3A34px=3Bmso-table-rs?=
+ =?utf-8?q?pace=3A0pt=3Bmso-table-lspace=3A0pt=3Bborder-width=3A1px=3Bborder-style=3As?=
+ =?utf-8?q?olid=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fpremium=2Fproducts=2F=3Ffamily=3D?=
+ =?utf-8?q?jss&amp=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp?=
+ =?utf-8?q?=3Btrk=3Deml-email=5Fjob=5Falert=5Fdigest=5F01-job=5Falert-19-premium=5Fupsel?=
+ =?utf-8?q?l=5Ftop=5Fapplicant=5Fmercado&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdige?=
+ =?utf-8?q?st=5F01-job=5Falert-19-premium=5Fupsell=5Ftop=5Fapplicant=5Fmercado-null-?=
+ =?utf-8?q?a89ral%7Ektswn4ds%7Ef7-null-neptune%2Fpremium%2Eproducts&amp=3B?=
+ =?utf-8?q?lipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74B?=
+ =?utf-8?q?BsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bword-wrap=3Anormal=3Bcolor=3A#0A66C2=3Bword-bre?=
+ =?utf-8?q?ak=3Anormal=3Bwhite-space=3Anormal=3B-webkit-text-size-adjust=3A100%=3Bdi?=
+ =?utf-8?q?splay=3Ablock=3Btext-decoration=3Anone=3B-ms-text-size-adjust=3A100%=3Bov?=
+ =?utf-8?q?erflow-wrap=3Anormal=3Btext-align=3Acenter=3B=22=3EExperimente_Premium_de?=
+ =?utf-8?q?_gra=C3=A7a=3C=2Fa=3E=3C=2Ftd=3E?= </tr> </tbody> </table></a></td>
+ </tr> <!--[if !mso]><!--> <tr> <td height="3"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="1" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:1px;font-size:1px;line-height:1px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> <!--<![endif]--> </tbody> </table></td> </tr>
+ </tbody> </table></td> </tr> </tbody> </table></td> </tr> </tbody>
+ </table></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ bgcolor="#F3F2EF" align="left"
+ =?utf-8?q?style=3D=22background-color=3A#F3F2EF=3Bpadding-top=3A16px=3Bcolor=3A#00000?=
+ =?utf-8?q?0=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-tabl?=
+ =?utf-8?q?e-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Btext-align=3Aleft=3B=22=3E?=
+ <tbody> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="24" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:0px;font-size:0px;line-height:0px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ role="presentation" border="0" cellspacing="0" cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="1" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:12px;font-size:12px;line-height:12px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> <tr> <td align="left"
+ =?utf-8?q?style=3D=22padding=3A0=3Bcolor=3A#000000=3B-webkit-text-size-adjust=3A100%=3B?=
+ =?utf-8?q?mso-table-rspace=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjus?=
+ =?utf-8?q?t=3A100%=3Btext-align=3Aleft=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bword-wrap=3Abreak-word=3Bcolor=3A#000000=3Bword-break?=
+ =?utf-8?q?=3Abreak-word=3Bfont-weight=3A400=3B-ms-word-break=3Abreak-all=3Bfont-siz?=
+ =?utf-8?q?e=3A12px=3Bline-height=3A1=2E333=3Boverflow-wrap=3Abreak-word=3B=22=3EEste?=
+ e-mail foi enviado para Augusto Giani =?utf-8?q?=28Estagi=C3=A1rio?= na
+ Qualidade da 3|Network em Infortel Telecom Ltda). <a
+ =?utf-8?q?href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&amp=3B?=
+ =?utf-8?q?lipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74B?=
+ =?utf-8?q?BsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp=3Ba=3DcustomerServiceUrl&amp=3BmidTo?=
+ =?utf-8?q?ken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Bek=3Demail=5Fjob?=
+ =?utf-8?q?=5Falert=5Fdigest=5F01&amp=3BarticleId=3D4788=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Btext-decoration=3Aunderline=3Bdisplay=3Ainline-block=3B-ms-text-?=
+ =?utf-8?q?size-adjust=3A100%=3B=22=3ESaiba_por_que_inclu=C3=ADmos?=
+ isto.</a></p></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="1" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:12px;font-size:12px;line-height:12px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> <tr> <td align="left"
+ =?utf-8?q?style=3D=22padding=3A0=3Bcolor=3A#000000=3B-webkit-text-size-adjust=3A100%=3B?=
+ =?utf-8?q?mso-table-rspace=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjus?=
+ =?utf-8?q?t=3A100%=3Btext-align=3Aleft=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A12px=3B?=
+ =?utf-8?q?line-height=3A1=2E333=3B=22=3EVoc=C3=AA_est=C3=A1?= recebendo
+ e-mails sobre Alerta de vaga.</p></td> </tr> <tr> <td align="left"
+ style="padding:16px 0 0
+ =?utf-8?q?0=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso-tabl?=
+ =?utf-8?q?e-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Btext-align=3Aleft=3B=22=3E?=
+ <table role="presentation" align="center" border="0" cellspacing="0"
+ cellpadding="0" width="100%"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?=
+ <tbody> <tr> <td valign="middle" align="left" style="padding:0 0 16px
+ =?utf-8?q?0=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bvertical?=
+ =?utf-8?q?-align=3Amiddle=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B?=
+ =?utf-8?q?text-align=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Fjobs=2Falerts=3FmidToken=3DAQEh?=
+ =?utf-8?q?Rl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Fal?=
+ =?utf-8?q?ert=5Fdigest=5F01-footer-17-manage=5Falert&amp=3BtrkEmail=3Deml-email=5Fj?=
+ =?utf-8?q?ob=5Falert=5Fdigest=5F01-footer-17-manage=5Falert-null-a89ral%7Ektswn?=
+ =?utf-8?q?4ds%7Ef7-null-job%7Ealert%7Emanager&amp=3Blipi=3Durn%3Ali%3Apage%?=
+ =?utf-8?q?3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%?=
+ =?utf-8?q?3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Btext-decoration=3Aunderline=3Bdisplay=3Ainline-block=3B-ms-text-?=
+ =?utf-8?q?size-adjust=3A100%=3B=22=3E_=3Cspan?=
+ =?utf-8?q?_style=3D=22color=3A#0A66C2=3Bfont-weight=3A400=3Bfont-size=3A12px=3Bline-heig?=
+ =?utf-8?q?ht=3A1=2E333=3B=22=3EGerenciar_alertas_de?=
+ =?utf-8?q?_vaga=3C=2Fspan=3E=3C=2Fa=3E&nbsp=3B&nbsp=3B=C2=B7&nbsp=3B&nbsp=3B=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&amp=3B?=
+ =?utf-8?q?lipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74B?=
+ =?utf-8?q?BsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp=3Ba=3Djobs-jserp-search-mirror&amp?=
+ =?utf-8?q?=3BmidToken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Bek=3Dema?=
+ =?utf-8?q?il=5Fjob=5Falert=5Fdigest=5F01&amp=3Bli=3D18&amp=3Bm=3Dfooter&amp=3Bts=3Ddelete=5Fa?=
+ =?utf-8?q?lert&amp=3BalertAction=3Ddelete&amp=3BsavedSearchId=3D604844914=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Btext-decoration=3Aunderline=3Bdisplay=3Ainline-block=3B-ms-text-?=
+ =?utf-8?q?size-adjust=3A100%=3B=22=3E_=3Cspan?=
+ =?utf-8?q?_style=3D=22color=3A#0A66C2=3Bfont-weight=3A400=3Bfont-size=3A12px=3Bline-heig?=
+ =?utf-8?q?ht=3A1=2E333=3B=22=3ECancelar?=
+ =?utf-8?q?_inscri=C3=A7=C3=A3o=3C=2Fspan=3E=3C=2Fa=3E&nbsp=3B&nbsp=3B=C2=B7&nbsp=3B&nbsp=3B=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fe=2Fv2=3Fe=3Da89ral-ktswn4ds-f7&amp=3B?=
+ =?utf-8?q?lipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdigest=5F01%3BI74B?=
+ =?utf-8?q?BsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp=3Ba=3DcustomerServiceUrl&amp=3BmidTo?=
+ =?utf-8?q?ken=3DAQEhRl50iidL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Bek=3Demail=5Fjob?=
+ =?utf-8?q?=5Falert=5Fdigest=5F01&amp=3Bli=3D43&amp=3Bm=3Dfooter&amp=3Bts=3Dhelp&amp=3Bartic?=
+ =?utf-8?q?leId=3D67=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Btext-decoration=3Aunderline=3Bdisplay=3Ainline-block=3B-ms-text-?=
+ =?utf-8?q?size-adjust=3A100%=3B=22=3E_=3Cspan?=
+ =?utf-8?q?_style=3D=22color=3A#0A66C2=3Bfont-weight=3A400=3Bfont-size=3A12px=3Bline-heig?=
+ =?utf-8?q?ht=3A1=2E333=3B=22=3EAjuda=3C=2Fspan=3E=3C=2Fa=3E=3C=2Ftd=3E?=
+ </tr> </tbody> </table></td> </tr> <tr> <td align="left"
+ =?utf-8?q?style=3D=22padding=3A0=3B-webkit-text-size-adjust=3A100%=3Bmso-table-rspa?=
+ =?utf-8?q?ce=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3Btext-al?=
+ =?utf-8?q?ign=3Aleft=3B=22=3E=3Ca?=
+ =?utf-8?q?_href=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Fcomm=2Ffeed=2F=3FmidToken=3DAQEhRl50ii?=
+ =?utf-8?q?dL-g&amp=3BmidSig=3D0SkvCFb3Z659Y1&amp=3Btrk=3Deml-email=5Fjob=5Falert=5Fdi?=
+ =?utf-8?q?gest=5F01-footer-41-home&amp=3BtrkEmail=3Deml-email=5Fjob=5Falert=5Fdiges?=
+ =?utf-8?q?t=5F01-footer-41-home-null-a89ral%7Ektswn4ds%7Ef7-null-neptune%?=
+ =?utf-8?q?2Ffeed&amp=3Blipi=3Durn%3Ali%3Apage%3Aemail=5Femail=5Fjob=5Falert=5Fdiges?=
+ =?utf-8?q?t=5F01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=22?=
+ =?utf-8?q?_style=3D=22cursor=3Apointer=3Bcolor=3A#0A66C2=3B-webkit-text-size-adjust=3A?=
+ =?utf-8?q?100%=3Btext-decoration=3Aunderline=3Bdisplay=3Ainline-block=3B-ms-text-?=
+ =?utf-8?q?size-adjust=3A100%=3B=22=3E=3Cimg_alt=3D=22LinkedIn=22_border=3D=220=22_height=3D=2214=22?=
+ =?utf-8?q?_src=3D=22https=3A=2F=2Fstatic=2Elicdn=2Ecom=2Fsc=2Fp=2Fcom=2Elinkedin=2Eemail-assets-?=
+ =?utf-8?q?frontend%3Aemail-assets-frontend-static-content%2B=5F=5Flatest=5F=5F=2F?=
+ =?utf-8?q?f=2F%2Femail-assets-frontend%2Fimages%2Flogos%2Flogo=5Flinkedin=5Fm?=
+ =?utf-8?q?ercado=5Fblue=5F112x28=2Epng=22_width=3D=2256=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Bdisplay=3Ablock=3Btext-decoration=3Anone=3B=22=3E=3C=2Fa=3E=3C=2Ftd=3E_=3C=2Ftr=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="1" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:12px;font-size:12px;line-height:12px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> <tr> <td align="left"
+ =?utf-8?q?style=3D=22padding=3A0=3Bcolor=3A#000000=3B-webkit-text-size-adjust=3A100%=3B?=
+ =?utf-8?q?mso-table-rspace=3A0pt=3Bmso-table-lspace=3A0pt=3B-ms-text-size-adjus?=
+ =?utf-8?q?t=3A100%=3Btext-align=3Aleft=3B=22=3E_=3Cp?=
+ =?utf-8?q?_style=3D=22margin=3A0=3Bcolor=3A#000000=3Bfont-weight=3A400=3Bfont-size=3A12px=3B?=
+ =?utf-8?q?line-height=3A1=2E333=3B=22=3E=C2=A9?= 2021 LinkedIn Ireland
+ Unlimited Company, Wilton Plaza, Wilton Place, Dublin 2. LinkedIn
+ =?utf-8?b?w6k=?= um nome comercial registrado da LinkedIn Ireland Unlimited
+ Company. LinkedIn e a logomarca do LinkedIn =?utf-8?b?c8Ojbw==?= marcas
+ registradas do LinkedIn.</p></td> </tr> <tr> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="1" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:24px;font-size:24px;line-height:24px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> </tbody> </table></td> </tr> </tbody>
+ </table></td> <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <table
+ width="24" border="0" cellspacing="0" cellpadding="1"
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E_=3Ctbody=3E_=3Ctr=3E?=
+ <td
+ =?utf-8?q?style=3D=22-webkit-text-size-adjust=3A100%=3Bmso-table-rspace=3A0pt=3Bmso?=
+ =?utf-8?q?-table-lspace=3A0pt=3B-ms-text-size-adjust=3A100%=3B=22=3E?= <div
+ style="height:0px;font-size:0px;line-height:0px"> &nbsp; </div></td> </tr>
+ </tbody> </table></td> </tr> </tbody> </table></td> </tr> </tbody> </table>
+ </center></td> </tr> </tbody> </table> <img alt="" role="presentation"
+ =?utf-8?q?src=3D=22https=3A=2F=2Fwww=2Elinkedin=2Ecom=2Femimp=2Fip=5FWVRnNWNtRnNMV3QwYzNkdU?=
+ =?utf-8?q?5HUnpMV1kzOlpXMWhhV3hmYW05aVgyRnNaWEowWDJScFoyVnpkRjh3TVE9PTo?=
+ =?utf-8?q?=3D=2Egif=22?=
+ =?utf-8?q?_style=3D=22outline=3Anone=3B-ms-interpolation-mode=3Abicubic=3Bcolor=3A#FFF?=
+ =?utf-8?q?FFF=3Btext-decoration=3Anone=3Bwidth=3A1px=3Bheight=3A1px=3B=22=3E?=
+ </body> </html>
+Content-Type: multipart/alternative; boundary="=-hbgeG+Y9lJH/jEInMtnO7w=="
+
+--=-hbgeG+Y9lJH/jEInMtnO7w==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Id: <text-body>
+
+LinkedIn |  Seu alerta de vaga para Estagi=C3=A1rio de engenharia em: =
+Porto Alegre, Rio Grande do Sul, Brasil
+
+11 vagas novas correspondem =C3=A0s suas prefer=C3=AAncias.
+
+---------------------------------------------------------
+
+ESTAGI=C3=81RIO DE ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS
+OEmprego
+Porto Alegre, Rio Grande do Sul, Brasil
+
+Visualizar vaga: https://www.linkedin.com/comm/jobs/view/2726352513?al=
+ertAction=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&savedSearchId=3D604844914=
+&refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&trackingId=3Dc1kI9aRVwq8=
+0n5ok1kWQfg%3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&tr=
+k=3Deml-email_job_alert_digest_01-job_alert-6-member_details_mercado&t=
+rkEmail=3Deml-email_job_alert_digest_01-job_alert-6-member_details_mer=
+cado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn%3Ali%3Apa=
+ge%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D
+
+---------------------------------------------------------
+
+ESTAGI=C3=81RIO DE ENGENHARIA DE PRODU=C3=87=C3=83O - S=C3=83O LEOPOLD=
+O Em S=C3=A3o Leopoldo/RS
+OEmprego
+S=C3=A3o Leopoldo, Rio Grande do Sul, Brasil
+
+Visualizar vaga: https://www.linkedin.com/comm/jobs/view/2726355060?al=
+ertAction=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&savedSearchId=3D604844914=
+&refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&trackingId=3DELsI4iQp0aC=
+GBcg5HPNZSw%3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&tr=
+k=3Deml-email_job_alert_digest_01-job_alert-7-member_details_mercado&t=
+rkEmail=3Deml-email_job_alert_digest_01-job_alert-7-member_details_mer=
+cado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn%3Ali%3Apa=
+ge%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D
+
+---------------------------------------------------------
+
+ESTAGIARIO DE ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS
+OEmprego
+Porto Alegre, Rio Grande do Sul, Brasil
+
+Visualizar vaga: https://www.linkedin.com/comm/jobs/view/2726356308?al=
+ertAction=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&savedSearchId=3D604844914=
+&refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&trackingId=3Do%2B1LD1lxS=
+i%2BK4FCOpWX9Pg%3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y=
+1&trk=3Deml-email_job_alert_digest_01-job_alert-8-member_details_merca=
+do&trkEmail=3Deml-email_job_alert_digest_01-job_alert-8-member_details=
+_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D=
+%3D
+
+---------------------------------------------------------
+
+ESTAGIARIO DE ENGENHARIA - GRAVATAI Em Gravata=C3=AD/RS
+OEmprego
+Gravata=C3=AD, Rio Grande do Sul, Brasil
+
+Visualizar vaga: https://www.linkedin.com/comm/jobs/view/2726355572?al=
+ertAction=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&savedSearchId=3D604844914=
+&refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&trackingId=3DbT3vmRxuwtJ=
+n35GBxtALpA%3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&tr=
+k=3Deml-email_job_alert_digest_01-job_alert-9-member_details_mercado&t=
+rkEmail=3Deml-email_job_alert_digest_01-job_alert-9-member_details_mer=
+cado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn%3Ali%3Apa=
+ge%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D
+
+---------------------------------------------------------
+
+ESTAGIARIO DE ENGENHARIA DE PRODU=C3=87=C3=83O - S=C3=83O LEOPOLDO Em =
+S=C3=A3o Leopoldo/RS
+OEmprego
+S=C3=A3o Leopoldo, Rio Grande do Sul, Brasil
+
+Visualizar vaga: https://www.linkedin.com/comm/jobs/view/2726357382?al=
+ertAction=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&savedSearchId=3D604844914=
+&refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&trackingId=3Dh4ab2Ai4Olg=
+2m9hG5LBc5Q%3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&tr=
+k=3Deml-email_job_alert_digest_01-job_alert-10-member_details_mercado&=
+trkEmail=3Deml-email_job_alert_digest_01-job_alert-10-member_details_m=
+ercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn%3Ali%3A=
+page%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3=
+D
+
+---------------------------------------------------------
+
+ESTAGIARIO DE ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS
+OEmprego
+Porto Alegre, Rio Grande do Sul, Brasil
+
+Visualizar vaga: https://www.linkedin.com/comm/jobs/view/2726356310?al=
+ertAction=3Dmarkasviewed&savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&savedSearchId=3D604844914=
+&refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&trackingId=3DwQ%2F26qvYK=
+myxowweUtBv1Q%3D%3D&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&=
+trk=3Deml-email_job_alert_digest_01-job_alert-11-member_details_mercad=
+o&trkEmail=3Deml-email_job_alert_digest_01-job_alert-11-member_details=
+_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D=
+%3D
+
+---------------------------------------------------------
+
+
+---------------------------------------------------------
+Veja as vagas para as quais voc=C3=AA seria um dos melhores candidatos
+
+Experimentar Premium gr=C3=A1tis:  https://www.linkedin.com/comm/premi=
+um/products/?family=3Djss&midToken=3DAQEhRl50iidL-g&midSig=3D0SkvCFb3Z=
+659Y1&trk=3Deml-email_job_alert_digest_01-job_alert-19-premium_upsell_=
+top_applicant_mercado&trkEmail=3Deml-email_job_alert_digest_01-job_ale=
+rt-19-premium_upsell_top_applicant_mercado-null-a89ral%7Ektswn4ds%7Ef7=
+-null-neptune%2Fpremium%2Eproducts&lipi=3Durn%3Ali%3Apage%3Aemail_emai=
+l_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D
+
+
+
+
+
+.....................................
+
+Gerencie seus alertas de vaga: https://www.linkedin.com/comm/jobs/aler=
+ts?midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml=
+-email_job_alert_digest_01-footer-17-manage_alert&amp;trkEmail=3Deml-e=
+mail_job_alert_digest_01-footer-17-manage_alert-null-a89ral%7Ektswn4ds=
+%7Ef7-null-job%7Ealert%7Emanager&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D
+
+Cancelar inscri=C3=A7=C3=A3o: https://www.linkedin.com/e/v2?e=3Da89ral=
+-ktswn4ds-f7&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest=
+_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp;a=3Djobs-jserp-search-mirror&=
+amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;ek=3Dema=
+il_job_alert_digest_01&amp;li=3D18&amp;m=3Dfooter&amp;ts=3Ddelete_aler=
+t&amp;alertAction=3Ddelete&amp;savedSearchId=3D604844914
+
+Ajuda: https://www.linkedin.com/e/v2?e=3Da89ral-ktswn4ds-f7&lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1B=
+W1Q%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQEhRl50iidL-g&midSig=3D0S=
+kvCFb3Z659Y1&ek=3Demail_job_alert_digest_01&li=3D43&m=3Dfooter&ts=3Dhe=
+lp&articleId=3D67
+
+
+Voc=C3=AA est=C3=A1 recebendo e-mails de notifica=C3=A7=C3=A3o do Link=
+edIn.
+
+Este e-mail foi enviado para Augusto Giani (Estagi=C3=A1rio na Qualida=
+de da 3|Network em Infortel Telecom Ltda).
+Saiba por que inclu=C3=ADmos isso: https://www.linkedin.com/e/v2?e=3Da=
+89ral-ktswn4ds-f7&lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_diges=
+t_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&a=3DcustomerServiceUrl&midToken=3D=
+AQEhRl50iidL-g&midSig=3D0SkvCFb3Z659Y1&ek=3Demail_job_alert_digest_01&=
+articleId=3D4788
+
+=C2=A9 2021 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton P=
+lace, Dublin 2. LinkedIn =C3=A9 um nome comercial registrado da Linked=
+In Ireland Unlimited Company. LinkedIn e a logomarca do LinkedIn s=C3=A3=
+o marcas registradas do LinkedIn.
+--=-hbgeG+Y9lJH/jEInMtnO7w==
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Id: <html-body>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:/=
+/www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"htt=
+p://www.w3.org/1999/xhtml" lang=3D"pt" xml:lang=3D"pt"> <head> <meta h=
+ttp-equiv=3D"Content-Type" content=3D"text/html;charset=3Dutf-8"> <met=
+a name=3D"HandheldFriendly" content=3D"true"> <meta name=3D"viewport" =
+content=3D"width=3Ddevice-width; initial-scale=3D0.666667; user-scalab=
+le=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <ti=
+tle></title> <!--[if mso]><style type=3D"text/css">body {font-family: =
+Helvetica Neue, Helvetica, Arial, sans-serif;}.mercado-email-container=
+ {width: 512px !important;}h1, h2, h3, h4, h5, h6 {font-weight: 700 !i=
+mportant;}</style><![endif]--> <!--[if IE]><style type=3D"text/css">.m=
+ercado-email-container {width: 512px !important;}h1, h2, h3, h4, h5, h=
+6 {font-weight: 700 !important;}</style><![endif]--> <style type=3D"te=
+xt/css">@media only screen and (max-width:32em) { .mercado-email-conta=
+iner { width:100% !important; } } @media only screen and (max-width:20=
+em) {} @media only screen and (max-device-width:30em) {} @media screen=
+ and (device-width:30em) and (device-height:22.5em), screen and (devic=
+e-width:22.5em) and (device-height:30em), screen and (device-width:20e=
+m) and (device-height:15em) {} @media screen and (-webkit-min-device-p=
+ixel-ratio:0) {} @media screen and (max-device-width:25.88em) and (max=
+-device-height:48.5em) {} @media only screen and (max-width:32em) { .m=
+ercado-email-container { width:100% !important; } } @media only screen=
+ and (max-width:20em) {} @media only screen and (max-device-width:30em=
+) {} @media screen and (device-width:30em) and (device-height:22.5em),=
+ screen and (device-width:22.5em) and (device-height:30em), screen and=
+ (device-width:20em) and (device-height:15em) {} @media screen and (-w=
+ebkit-min-device-pixel-ratio:0) {} @media screen and (max-device-width=
+:25.88em) and (max-device-height:48.5em) {} </style> </head> <body sty=
+le=3D"padding:0;margin:0 auto;-webkit-text-size-adjust:100%;width:100%=
+ !important;-ms-text-size-adjust:100%;font-family:Helvetica Neue,Helve=
+tica,Arial,sans-serif;"> <div style=3D"overflow:hidden;color:transpare=
+nt;visibility:hidden;mso-hide:all;width:0;font-size:0;opacity:0;height=
+:0;"> Visualizar vagas em: Porto Alegre, Rio Grande do Sul, Brasil =E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C=
+&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=
+=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbs=
+p;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp; </div> <table role=3D"=
+presentation" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" width=3D"100%" bgcolor=3D"#F3F2EF" style=3D"background-color=
+:#F3F2EF;table-layout:fixed;-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr=
+> <td align=3D"center" style=3D"padding-top:24px;-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjus=
+t:100%;"> <center style=3D"width:100%;"> <table role=3D"presentation" =
+border=3D"0" class=3D"mercado-email-container" cellspacing=3D"0" cellp=
+adding=3D"0" width=3D"512" bgcolor=3D"#FFFFFF" style=3D"background-col=
+or:#FFFFFF;margin:0 auto;max-width:512px;-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;width:inherit;mso-table-lspace:0pt;-ms-text-size=
+-adjust:100%;"> <tbody> <tr> <td bgcolor=3D"#FFFFFF" style=3D"backgrou=
+nd-color:#FFFFFF;padding:18px 24px 0 24px;-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-t=
+able-rspace:0pt;width:100% !important;mso-table-lspace:0pt;-ms-text-si=
+ze-adjust:100%;min-width:100% !important;"> <tbody> <tr> <td align=3D"=
+left" valign=3D"middle" style=3D"-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=
+=3D"https://www.linkedin.com/comm/feed/?midToken=3DAQEhRl50iidL-g&amp;=
+midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-header=
+-39-home&amp;trkEmail=3Deml-email_job_alert_digest_01-header-39-home-n=
+ull-a89ral%7Ektswn4ds%7Ef7-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Ap=
+age%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D=
+" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;=
+display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;">=
+ <img alt=3D"LinkedIn" border=3D"0" src=3D"https://www.linkedin.com/co=
+mm/dms/logo?midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;=
+trk=3Deml-email_job_alert_digest_01-null-47-null&amp;trkEmail=3Deml-em=
+ail_job_alert_digest_01-null-47-null-null-a89ral%7Ektswn4ds%7Ef7-null-=
+comms%7Ebadging%7Edynamic&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job=
+_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp;_sig=3D3eQmc7tXJ=
+659Y1" height=3D"38" style=3D"outline:none;-ms-interpolation-mode:bicu=
+bic;color:#FFFFFF;text-decoration:none;"></a></td> <td valign=3D"middl=
+e" width=3D"100%" align=3D"right" style=3D"-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;"><a href=3D"https://www.linkedin.com/comm/in/augustogiani?midToken=3D=
+AQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_ale=
+rt_digest_01-header-48-profile&amp;trkEmail=3Deml-email_job_alert_dige=
+st_01-header-48-profile-null-a89ral%7Ektswn4ds%7Ef7-null-neptune%2Fpro=
+file%7Evanity%2Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_aler=
+t_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;=
+margin:0;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-bl=
+ock;text-decoration:none;-ms-text-size-adjust:100%;"> <table role=3D"p=
+resentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td align=3D=
+"left" valign=3D"middle" style=3D"padding:0 0 0 10px;padding-top:7px;-=
+webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;"></td> <td valign=3D"middle" width=3D"40" =
+style=3D"padding-top:7px;-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;padding-left:10px;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;"> <img alt=3D"Augusto Giani" border=3D"0" height=3D"32" width=3D"32"=
+ src=3D"https://media-exp1.licdn.com/dms/image/C4E03AQHT6iYQTpv9IQ/pro=
+file-displayphoto-shrink_100_100/0/1609543547171?e=3D2159024400&amp;v=3D=
+beta&amp;t=3DrV0KRb-rCSTzj63pR8sd-ZiXiTEYCwV9iqn0iNKkEdY" style=3D"bor=
+der-radius:50%;outline:none;-ms-interpolation-mode:bicubic;color:#FFFF=
+FF;text-decoration:none;"></td> </tr> </tbody> </table></a></td> </tr>=
+ </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust=
+:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" c=
+ellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"=
+> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=
+=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wid=
+th=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td s=
+tyle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"padding:24px=
+ 24px 8px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"> <h2 style=3D"margin:0;color:#=
+000000;font-weight:400;font-size:24px;line-height:1.333;"><a href=3D"h=
+ttps://www.linkedin.com/comm/jobs/search?geoId=3D102556749&amp;savedSe=
+archId=3D604844914&amp;origin=3DJOB_ALERT_EMAIL&amp;f_TPR=3Da163207139=
+5-&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3D=
+eml-email_job_alert_digest_01-job_alert-5-title_jserp_header_mercado&a=
+mp;trkEmail=3Deml-email_job_alert_digest_01-job_alert-5-title_jserp_he=
+ader_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Ejserp%7Esearch&am=
+p;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwS=
+w%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-t=
+ext-size-adjust:100%;display:inline-block;text-decoration:none;-ms-tex=
+t-size-adjust:100%;" #242424;display:inline;=3D"">Seu alerta de vaga p=
+ara <span style=3D"font-weight:700;">Estagi=C3=A1rio de engenharia</sp=
+an></a></h2></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webki=
+t-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;"> <tbody> <tr> <td style=3D"padding:0 24px 16px=
+;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;color:#000000;fon=
+t-weight:400;font-size:16px;line-height:1.5;">11 vagas novas em: Porto=
+ Alegre, Rio Grande do Sul, Brasil correspondem =C3=A0s suas prefer=C3=
+=AAncias.</p></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;"> <table cellspacing=3D"0" cellpadding=3D=
+"0" style=3D"padding:10px 24px;-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody v=
+align=3D"top" style=3D"table-layout:fixed;vertical-align:top;width:100=
+%;"> <tr> <td width=3D"56" style=3D"-webkit-text-size-adjust:100%;mso-=
+table-rspace:0pt;width:56px;mso-table-lspace:0pt;-ms-text-size-adjust:=
+100%;padding-right:16px;"><a href=3D"https://www.linkedin.com/comm/job=
+s/view/2726352513?alertAction=3Dmarkasviewed&amp;savedSearchAuthToken=3D=
+1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYY=
+AXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYh=
+PtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3K=
+uuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh=
+7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp=
+;savedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f1107=
+77d53&amp;trackingId=3Dc1kI9aRVwq80n5ok1kWQfg%3D%3D&amp;midToken=3DAQE=
+hRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_=
+digest_01-job_alert-6-member_details_mercado&amp;trkEmail=3Deml-email_=
+job_alert_digest_01-job_alert-6-member_details_mercado-null-a89ral%7Ek=
+tswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email=
+_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor=
+:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-bl=
+ock;text-decoration:none;-ms-text-size-adjust:100%;"> <img alt=3D"OEmp=
+rego" border=3D"0" height=3D"48" width=3D"48" src=3D"https://static.li=
+cdn.com/sc/p/com.linkedin.email-assets-frontend%3Aemail-assets-fronten=
+d-static-content%2B__latest__/f/%2Femail-assets-frontend%2Fimages%2Fem=
+ail%2Fphoenix%2Ficons%2Fghost_phoenix_person_100x100_v1.png" style=3D"=
+outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decorat=
+ion:none;"></a></td> <td align=3D"left" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;padding-left:0;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linkedi=
+n.com/comm/jobs/view/2726352513?alertAction=3Dmarkasviewed&amp;savedSe=
+archAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhz=
+bmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9=
+cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM=
+2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ=
+04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qB=
+sEw4UiNYxkRs&amp;savedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-4=
+52f-a19a-e0f110777d53&amp;trackingId=3Dc1kI9aRVwq80n5ok1kWQfg%3D%3D&am=
+p;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-=
+email_job_alert_digest_01-job_alert-6-member_details_mercado&amp;trkEm=
+ail=3Deml-email_job_alert_digest_01-job_alert-6-member_details_mercado=
+-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apa=
+ge%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D"=
+ style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;d=
+isplay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> =
+<table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"100%" valign=3D"top" style=3D"table-layout:fixed;-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;vertical-align:top;widt=
+h:100%;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> =
+<td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;padding-bottom:4px;-ms-text-size-adjust:100%;"><a href=3D=
+"https://www.linkedin.com/comm/jobs/view/2726352513?alertAction=3Dmark=
+asviewed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4=
+EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuY=
+cX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapi=
+aZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7=
+T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjs=
+c%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D604844914&amp;ref=
+Id=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3Dc1kI9aRVwq8=
+0n5ok1kWQfg%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z=
+659Y1&amp;trk=3Deml-email_job_alert_digest_01-job_alert-6-member_detai=
+ls_mercado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_alert-6-me=
+mber_details_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;=
+lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%=
+2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-tex=
+t-size-adjust:100%;font-weight:700;text-decoration:none;display:inline=
+-block;font-size:16px;-ms-text-size-adjust:100%;">ESTAGI=C3=81RIO DE E=
+NGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS</a></td> </tr> <tr> =
+<td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;color=
+:#000000;font-weight:400;font-size:14px;line-height:1.429;">OEmprego =C2=
+=B7 Porto Alegre, Rio Grande do Sul, Brasil</p></td> </tr> <tr> <td wi=
+dth=3D"100%" style=3D"padding-top:8px;-webkit-text-size-adjust:100%;ms=
+o-table-rspace:0pt;width:100%;mso-table-lspace:0pt;-ms-text-size-adjus=
+t:100%;"> <table role=3D"presentation" align=3D"left" border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" width=3D"initial" style=3D"-webkit-te=
+xt-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;"> <tbody> <tr style=3D"color:black;"></tr> </tbody>=
+ </table></td> </tr> </tbody> </table></a></td> </tr> </tbody> </table=
+> <table cellspacing=3D"0" cellpadding=3D"0" style=3D"padding:10px 24p=
+x;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:=
+0pt;-ms-text-size-adjust:100%;"> <tbody valign=3D"top" style=3D"table-=
+layout:fixed;vertical-align:top;width:100%;"> <tr> <td width=3D"56" st=
+yle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;width:56px;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;padding-right:16px;"><a =
+href=3D"https://www.linkedin.com/comm/jobs/view/2726355060?alertAction=
+=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFc=
+Uh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l7=
+8GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDq=
+iR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxi=
+zc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA=
+45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D604844914&=
+amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3DELsI=
+4iQp0aCGBcg5HPNZSw%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0S=
+kvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-job_alert-7-membe=
+r_details_mercado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_ale=
+rt-7-member_details_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Evi=
+ew&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74B=
+BsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-web=
+kit-text-size-adjust:100%;display:inline-block;text-decoration:none;-m=
+s-text-size-adjust:100%;"> <img alt=3D"OEmprego" border=3D"0" height=3D=
+"48" width=3D"48" src=3D"https://static.licdn.com/sc/p/com.linkedin.em=
+ail-assets-frontend%3Aemail-assets-frontend-static-content%2B__latest_=
+_/f/%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons%2Fghos=
+t_phoenix_person_100x100_v1.png" style=3D"outline:none;-ms-interpolati=
+on-mode:bicubic;color:#FFFFFF;text-decoration:none;"></a></td> <td ali=
+gn=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;padding-left:0;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-a=
+lign:left;"><a href=3D"https://www.linkedin.com/comm/jobs/view/2726355=
+060?alertAction=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%26AQFDf-wc=
+e-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfC=
+TLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJS=
+lcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HG=
+z5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_=
+OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearch=
+Id=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;tr=
+ackingId=3DELsI4iQp0aCGBcg5HPNZSw%3D%3D&amp;midToken=3DAQEhRl50iidL-g&=
+amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-jo=
+b_alert-7-member_details_mercado&amp;trkEmail=3Deml-email_job_alert_di=
+gest_01-job_alert-7-member_details_mercado-null-a89ral%7Ektswn4ds%7Ef7=
+-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_d=
+igest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;col=
+or:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;text-dec=
+oration:none;-ms-text-size-adjust:100%;"> <table role=3D"presentation"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" valig=
+n=3D"top" style=3D"table-layout:fixed;-webkit-text-size-adjust:100%;ms=
+o-table-rspace:0pt;vertical-align:top;width:100%;mso-table-lspace:0pt;=
+-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;padding-botto=
+m:4px;-ms-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/=
+comm/jobs/view/2726355060?alertAction=3Dmarkasviewed&amp;savedSearchAu=
+thToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ=
+55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0Nqp=
+GZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuU=
+LjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiw=
+OjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4Ui=
+NYxkRs&amp;savedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a1=
+9a-e0f110777d53&amp;trackingId=3DELsI4iQp0aCGBcg5HPNZSw%3D%3D&amp;midT=
+oken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_=
+job_alert_digest_01-job_alert-7-member_details_mercado&amp;trkEmail=3D=
+eml-email_job_alert_digest_01-job_alert-7-member_details_mercado-null-=
+a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Ae=
+mail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=
+=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;font-we=
+ight:700;text-decoration:none;display:inline-block;font-size:16px;-ms-=
+text-size-adjust:100%;">ESTAGI=C3=81RIO DE ENGENHARIA DE PRODU=C3=87=C3=
+=83O - S=C3=83O LEOPOLDO Em S=C3=A3o Leopoldo/RS</a></td> </tr> <tr> <=
+td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;color:=
+#000000;font-weight:400;font-size:14px;line-height:1.429;">OEmprego =C2=
+=B7 S=C3=A3o Leopoldo, Rio Grande do Sul, Brasil</p></td> </tr> <tr> <=
+td width=3D"100%" style=3D"padding-top:8px;-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;width:100%;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <table role=3D"presentation" align=3D"left" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" width=3D"initial" style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms=
+-text-size-adjust:100%;"> <tbody> <tr style=3D"color:black;"></tr> </t=
+body> </table></td> </tr> </tbody> </table></a></td> </tr> </tbody> </=
+table> <table cellspacing=3D"0" cellpadding=3D"0" style=3D"padding:10p=
+x 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;-ms-text-size-adjust:100%;"> <tbody valign=3D"top" style=3D"t=
+able-layout:fixed;vertical-align:top;width:100%;"> <tr> <td width=3D"5=
+6" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;width:5=
+6px;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-right:16px;=
+"><a href=3D"https://www.linkedin.com/comm/jobs/view/2726356308?alertA=
+ction=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAX=
+wEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuL=
+Cq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOy=
+nMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSM=
+rLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoY=
+vBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D60484=
+4914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3D=
+o%2B1LD1lxSi%2BK4FCOpWX9Pg%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;mid=
+Sig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-job_alert=
+-8-member_details_mercado&amp;trkEmail=3Deml-email_job_alert_digest_01=
+-job_alert-8-member_details_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-j=
+obs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_0=
+1%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A6=
+6C2;-webkit-text-size-adjust:100%;display:inline-block;text-decoration=
+:none;-ms-text-size-adjust:100%;"> <img alt=3D"OEmprego" border=3D"0" =
+height=3D"48" width=3D"48" src=3D"https://static.licdn.com/sc/p/com.li=
+nkedin.email-assets-frontend%3Aemail-assets-frontend-static-content%2B=
+__latest__/f/%2Femail-assets-frontend%2Fimages%2Femail%2Fphoenix%2Fico=
+ns%2Fghost_phoenix_person_100x100_v1.png" style=3D"outline:none;-ms-in=
+terpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"></a></td=
+> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;padding-left:0;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;text-align:left;"><a href=3D"https://www.linkedin.com/comm/jobs/vie=
+w/2726356308?alertAction=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%2=
+6AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXS=
+LszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtw=
+BqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuK=
+p5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Ll=
+nl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;sa=
+vedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d=
+53&amp;trackingId=3Do%2B1LD1lxSi%2BK4FCOpWX9Pg%3D%3D&amp;midToken=3DAQ=
+EhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert=
+_digest_01-job_alert-8-member_details_mercado&amp;trkEmail=3Deml-email=
+_job_alert_digest_01-job_alert-8-member_details_mercado-null-a89ral%7E=
+ktswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_emai=
+l_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"curso=
+r:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-b=
+lock;text-decoration:none;-ms-text-size-adjust:100%;"> <table role=3D"=
+presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" valign=3D"top" style=3D"table-layout:fixed;-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;vertical-align:top;width:100%;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;p=
+adding-bottom:4px;-ms-text-size-adjust:100%;"><a href=3D"https://www.l=
+inkedin.com/comm/jobs/view/2726356308?alertAction=3Dmarkasviewed&amp;s=
+avedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pm=
+BjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWM=
+q431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKl=
+Y_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17=
+ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QG=
+Bzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D604844914&amp;refId=3Dafd00cb3-=
+9d72-452f-a19a-e0f110777d53&amp;trackingId=3Do%2B1LD1lxSi%2BK4FCOpWX9P=
+g%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;=
+trk=3Deml-email_job_alert_digest_01-job_alert-8-member_details_mercado=
+&amp;trkEmail=3Deml-email_job_alert_digest_01-job_alert-8-member_detai=
+ls_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn=
+%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1B=
+W1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adj=
+ust:100%;font-weight:700;text-decoration:none;display:inline-block;fon=
+t-size:16px;-ms-text-size-adjust:100%;">ESTAGIARIO DE ENGENHARIA CIVIL=
+ - PORTO ALEGRE Em Porto Alegre/RS</a></td> </tr> <tr> <td style=3D"-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;=
+-ms-text-size-adjust:100%;"> <p style=3D"margin:0;color:#000000;font-w=
+eight:400;font-size:14px;line-height:1.429;">OEmprego =C2=B7 Porto Ale=
+gre, Rio Grande do Sul, Brasil</p></td> </tr> <tr> <td width=3D"100%" =
+style=3D"padding-top:8px;-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;width:100%;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <ta=
+ble role=3D"presentation" align=3D"left" border=3D"0" cellspacing=3D"0=
+" cellpadding=3D"0" width=3D"initial" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:=
+100%;"> <tbody> <tr style=3D"color:black;"></tr> </tbody> </table></td=
+> </tr> </tbody> </table></a></td> </tr> </tbody> </table> <table cell=
+spacing=3D"0" cellpadding=3D"0" style=3D"padding:10px 24px;-webkit-tex=
+t-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-=
+size-adjust:100%;"> <tbody valign=3D"top" style=3D"table-layout:fixed;=
+vertical-align:top;width:100%;"> <tr> <td width=3D"56" style=3D"-webki=
+t-text-size-adjust:100%;mso-table-rspace:0pt;width:56px;mso-table-lspa=
+ce:0pt;-ms-text-size-adjust:100%;padding-right:16px;"><a href=3D"https=
+://www.linkedin.com/comm/jobs/view/2726355572?alertAction=3Dmarkasview=
+ed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpM=
+hO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXU=
+BaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC=
+__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ez=
+S99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AU=
+scwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D604844914&amp;refId=3Da=
+fd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3DbT3vmRxuwtJn35GBx=
+tALpA%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&=
+amp;trk=3Deml-email_job_alert_digest_01-job_alert-9-member_details_mer=
+cado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_alert-9-member_d=
+etails_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3D=
+urn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0=
+Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-=
+adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-ad=
+just:100%;"> <img alt=3D"OEmprego" border=3D"0" height=3D"48" width=3D=
+"48" src=3D"https://static.licdn.com/sc/p/com.linkedin.email-assets-fr=
+ontend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2Femail-=
+assets-frontend%2Fimages%2Femail%2Fphoenix%2Ficons%2Fghost_phoenix_per=
+son_100x100_v1.png" style=3D"outline:none;-ms-interpolation-mode:bicub=
+ic;color:#FFFFFF;text-decoration:none;"></a></td> <td align=3D"left" s=
+tyle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;padding-lef=
+t:0;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"><=
+a href=3D"https://www.linkedin.com/comm/jobs/view/2726355572?alertActi=
+on=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEM=
+FcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_=
+l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMn=
+DqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLt=
+xizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBp=
+GA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D60484491=
+4&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3DbT=
+3vmRxuwtJn35GBxtALpA%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D=
+0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-job_alert-9-mem=
+ber_details_mercado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_a=
+lert-9-member_details_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7E=
+view&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI7=
+4BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-w=
+ebkit-text-size-adjust:100%;display:inline-block;text-decoration:none;=
+-ms-text-size-adjust:100%;"> <table role=3D"presentation" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" valign=3D"top" sty=
+le=3D"table-layout:fixed;-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;vertical-align:top;width:100%;mso-table-lspace:0pt;-ms-text-size=
+-adjust:100%;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;padding-bottom:4px;-ms-tex=
+t-size-adjust:100%;"><a href=3D"https://www.linkedin.com/comm/jobs/vie=
+w/2726355572?alertAction=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%2=
+6AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXS=
+LszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtw=
+BqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuK=
+p5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Ll=
+nl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;sa=
+vedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d=
+53&amp;trackingId=3DbT3vmRxuwtJn35GBxtALpA%3D%3D&amp;midToken=3DAQEhRl=
+50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_dig=
+est_01-job_alert-9-member_details_mercado&amp;trkEmail=3Deml-email_job=
+_alert_digest_01-job_alert-9-member_details_mercado-null-a89ral%7Ektsw=
+n4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_jo=
+b_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:po=
+inter;color:#0A66C2;-webkit-text-size-adjust:100%;font-weight:700;text=
+-decoration:none;display:inline-block;font-size:16px;-ms-text-size-adj=
+ust:100%;">ESTAGIARIO DE ENGENHARIA - GRAVATAI Em Gravata=C3=AD/RS</a>=
+</td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D=
+"margin:0;color:#000000;font-weight:400;font-size:14px;line-height:1.4=
+29;">OEmprego =C2=B7 Gravata=C3=AD, Rio Grande do Sul, Brasil</p></td>=
+ </tr> <tr> <td width=3D"100%" style=3D"padding-top:8px;-webkit-text-s=
+ize-adjust:100%;mso-table-rspace:0pt;width:100%;mso-table-lspace:0pt;-=
+ms-text-size-adjust:100%;"> <table role=3D"presentation" align=3D"left=
+" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"initial" s=
+tyle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr style=3D"color:blac=
+k;"></tr> </tbody> </table></td> </tr> </tbody> </table></a></td> </tr=
+> </tbody> </table> <table cellspacing=3D"0" cellpadding=3D"0" style=3D=
+"padding:10px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody valign=3D"top=
+" style=3D"table-layout:fixed;vertical-align:top;width:100%;"> <tr> <t=
+d width=3D"56" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;width:56px;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding=
+-right:16px;"><a href=3D"https://www.linkedin.com/comm/jobs/view/27263=
+57382?alertAction=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%26AQFDf-=
+wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoT=
+fCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dM=
+JSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5=
+HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28f=
+J_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSear=
+chId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;=
+trackingId=3Dh4ab2Ai4Olg2m9hG5LBc5Q%3D%3D&amp;midToken=3DAQEhRl50iidL-=
+g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-=
+job_alert-10-member_details_mercado&amp;trkEmail=3Deml-email_job_alert=
+_digest_01-job_alert-10-member_details_mercado-null-a89ral%7Ektswn4ds%=
+7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_ale=
+rt_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer=
+;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-block;text=
+-decoration:none;-ms-text-size-adjust:100%;"> <img alt=3D"OEmprego" bo=
+rder=3D"0" height=3D"48" width=3D"48" src=3D"https://static.licdn.com/=
+sc/p/com.linkedin.email-assets-frontend%3Aemail-assets-frontend-static=
+-content%2B__latest__/f/%2Femail-assets-frontend%2Fimages%2Femail%2Fph=
+oenix%2Ficons%2Fghost_phoenix_person_100x100_v1.png" style=3D"outline:=
+none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none=
+;"></a></td> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;padding-left:0;mso-table-lspace:0pt;-ms-text-siz=
+e-adjust:100%;text-align:left;"><a href=3D"https://www.linkedin.com/co=
+mm/jobs/view/2726357382?alertAction=3Dmarkasviewed&amp;savedSearchAuth=
+Token=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55=
+aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZ=
+QgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULj=
+ganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOj=
+zigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNY=
+xkRs&amp;savedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a=
+-e0f110777d53&amp;trackingId=3Dh4ab2Ai4Olg2m9hG5LBc5Q%3D%3D&amp;midTok=
+en=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_jo=
+b_alert_digest_01-job_alert-10-member_details_mercado&amp;trkEmail=3De=
+ml-email_job_alert_digest_01-job_alert-10-member_details_mercado-null-=
+a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Ae=
+mail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=
+=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;display=
+:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <table=
+ role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" width=3D"100%" valign=3D"top" style=3D"table-layout:fixed;-webkit-te=
+xt-size-adjust:100%;mso-table-rspace:0pt;vertical-align:top;width:100%=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td st=
+yle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;padding-bottom:4px;-ms-text-size-adjust:100%;"><a href=3D"htt=
+ps://www.linkedin.com/comm/jobs/view/2726357382?alertAction=3Dmarkasvi=
+ewed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoY=
+pMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3s=
+XUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZ=
+BC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4=
+ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26=
+AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D604844914&amp;refId=3D=
+afd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3Dh4ab2Ai4Olg2m9hG=
+5LBc5Q%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1=
+&amp;trk=3Deml-email_job_alert_digest_01-job_alert-10-member_details_m=
+ercado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_alert-10-membe=
+r_details_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lip=
+i=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BD=
+VDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-s=
+ize-adjust:100%;font-weight:700;text-decoration:none;display:inline-bl=
+ock;font-size:16px;-ms-text-size-adjust:100%;">ESTAGIARIO DE ENGENHARI=
+A DE PRODU=C3=87=C3=83O - S=C3=83O LEOPOLDO Em S=C3=A3o Leopoldo/RS</a=
+></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=
+=3D"margin:0;color:#000000;font-weight:400;font-size:14px;line-height:=
+1.429;">OEmprego =C2=B7 S=C3=A3o Leopoldo, Rio Grande do Sul, Brasil</=
+p></td> </tr> <tr> <td width=3D"100%" style=3D"padding-top:8px;-webkit=
+-text-size-adjust:100%;mso-table-rspace:0pt;width:100%;mso-table-lspac=
+e:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" align=3D=
+"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"initi=
+al" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr style=3D"color=
+:black;"></tr> </tbody> </table></td> </tr> </tbody> </table></a></td>=
+ </tr> </tbody> </table> <table cellspacing=3D"0" cellpadding=3D"0" st=
+yle=3D"padding:10px 24px;-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody valign=3D=
+"top" style=3D"table-layout:fixed;vertical-align:top;width:100%;"> <tr=
+> <td width=3D"56" style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;width:56px;mso-table-lspace:0pt;-ms-text-size-adjust:100%;pad=
+ding-right:16px;"><a href=3D"https://www.linkedin.com/comm/jobs/view/2=
+726356310?alertAction=3Dmarkasviewed&amp;savedSearchAuthToken=3D1%26AQ=
+FDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLsz=
+RfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqL=
+r4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5n=
+FVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7=
+g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;saved=
+SearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&=
+amp;trackingId=3DwQ%2F26qvYKmyxowweUtBv1Q%3D%3D&amp;midToken=3DAQEhRl5=
+0iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_dige=
+st_01-job_alert-11-member_details_mercado&amp;trkEmail=3Deml-email_job=
+_alert_digest_01-job_alert-11-member_details_mercado-null-a89ral%7Ekts=
+wn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_j=
+ob_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:p=
+ointer;color:#0A66C2;-webkit-text-size-adjust:100%;display:inline-bloc=
+k;text-decoration:none;-ms-text-size-adjust:100%;"> <img alt=3D"OEmpre=
+go" border=3D"0" height=3D"48" width=3D"48" src=3D"https://static.licd=
+n.com/sc/p/com.linkedin.email-assets-frontend%3Aemail-assets-frontend-=
+static-content%2B__latest__/f/%2Femail-assets-frontend%2Fimages%2Femai=
+l%2Fphoenix%2Ficons%2Fghost_phoenix_person_100x100_v1.png" style=3D"ou=
+tline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoratio=
+n:none;"></a></td> <td align=3D"left" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;padding-left:0;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;text-align:left;"><a href=3D"https://www.linkedin.=
+com/comm/jobs/view/2726356310?alertAction=3Dmarkasviewed&amp;savedSear=
+chAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5Lrz4EkoYpMhO8Km0pmBjUZhzbm=
+o0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78GcXyuYcX3sXUBaMJKkWMq431i9cH=
+0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_sapiaZeZBC__5e3QKlY_83MM2E=
+hUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8bUQ7T1D4ezS99PkN17ttwUZQ04=
+vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45yURjsc%26AUscwTS9QGBzg3qBsE=
+w4UiNYxkRs&amp;savedSearchId=3D604844914&amp;refId=3Dafd00cb3-9d72-452=
+f-a19a-e0f110777d53&amp;trackingId=3DwQ%2F26qvYKmyxowweUtBv1Q%3D%3D&am=
+p;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-=
+email_job_alert_digest_01-job_alert-11-member_details_mercado&amp;trkE=
+mail=3Deml-email_job_alert_digest_01-job_alert-11-member_details_merca=
+do-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Eview&amp;lipi=3Durn%3Ali%3A=
+page%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3=
+D" style=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%=
+;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"=
+> <table role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" width=3D"100%" valign=3D"top" style=3D"table-layout:fixed;-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;vertical-align:top;wi=
+dth:100%;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr=
+> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;padding-bottom:4px;-ms-text-size-adjust:100%;"><a hre=
+f=3D"https://www.linkedin.com/comm/jobs/view/2726356310?alertAction=3D=
+markasviewed&amp;savedSearchAuthToken=3D1%26AQFDf-wce-EQ_QAAAXwEMFcUh5=
+Lrz4EkoYpMhO8Km0pmBjUZhzbmo0JJ55aXWVBLYYAXSLszRfoTfCTLhzUQfbuLCq_l78Gc=
+XyuYcX3sXUBaMJKkWMq431i9cH0NqpGZQgjBEAYhPtwBqLr4dMJSlcHiLCoFOynMnDqiR_=
+sapiaZeZBC__5e3QKlY_83MM2EhUuULjganPyU3KuuKp5nFVR5HGz5Jge37pSMrLtxizc8=
+bUQ7T1D4ezS99PkN17ttwUZQ04vUiwOjzigPpnlh7Llnl7g28fJ_OfES4gwZoYvBpGA45y=
+URjsc%26AUscwTS9QGBzg3qBsEw4UiNYxkRs&amp;savedSearchId=3D604844914&amp=
+;refId=3Dafd00cb3-9d72-452f-a19a-e0f110777d53&amp;trackingId=3DwQ%2F26=
+qvYKmyxowweUtBv1Q%3D%3D&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0Sk=
+vCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-job_alert-11-membe=
+r_details_mercado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_ale=
+rt-11-member_details_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-jobs%7Ev=
+iew&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74=
+BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-we=
+bkit-text-size-adjust:100%;font-weight:700;text-decoration:none;displa=
+y:inline-block;font-size:16px;-ms-text-size-adjust:100%;">ESTAGIARIO D=
+E ENGENHARIA CIVIL - PORTO ALEGRE Em Porto Alegre/RS</a></td> </tr> <t=
+r> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;co=
+lor:#000000;font-weight:400;font-size:14px;line-height:1.429;">OEmpreg=
+o =C2=B7 Porto Alegre, Rio Grande do Sul, Brasil</p></td> </tr> <tr> <=
+td width=3D"100%" style=3D"padding-top:8px;-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;width:100%;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <table role=3D"presentation" align=3D"left" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" width=3D"initial" style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms=
+-text-size-adjust:100%;"> <tbody> <tr style=3D"color:black;"></tr> </t=
+body> </table></td> </tr> </tbody> </table></a></td> </tr> </tbody> </=
+table></td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-=
+table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <ta=
+ble role=3D"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr=
+> <td style=3D"padding:14px 24px 36px;-webkit-text-size-adjust:100%;ms=
+o-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"present=
+ation" align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;display:inline-block;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;"> <tbody> <tr> <td align=3D"center" valign=3D"middle" style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspac=
+e:0pt;font-size:16px;-ms-text-size-adjust:100%;"><a href=3D"https://ww=
+w.linkedin.com/comm/jobs/search?geoId=3D102556749&amp;savedSearchId=3D=
+604844914&amp;origin=3DJOB_ALERT_EMAIL&amp;f_TPR=3Da1632071395-&amp;mi=
+dToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-emai=
+l_job_alert_digest_01-job_alert-4-title_jserp_mercado&amp;trkEmail=3De=
+ml-email_job_alert_digest_01-job_alert-4-title_jserp_mercado-null-a89r=
+al%7Ektswn4ds%7Ef7-null-jobs%7Ejserp%7Esearch&amp;lipi=3Durn%3Ali%3Apa=
+ge%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D"=
+ style=3D"cursor:pointer;word-wrap:normal;color:#0A66C2;word-break:nor=
+mal;white-space:normal;-webkit-text-size-adjust:100%;display:block;tex=
+t-decoration:none;-ms-text-size-adjust:100%;overflow-wrap:normal;text-=
+align:center;"> <table role=3D"presentation" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;"> <tbody> <tr> <td bgcolor=3D"#0A66C2" style=3D"padding:12px 24px=
+;color:#FFFFFF;-webkit-text-size-adjust:100%;font-weight:400;display:i=
+nline-block;text-decoration:none;font-size:16px;-ms-text-size-adjust:1=
+00%;line-height:1.25em;border-color:#0A66C2;background-color:#0A66C2;b=
+order-radius:34px;mso-table-rspace:0pt;mso-table-lspace:0pt;border-wid=
+th:1px;border-style:solid;"><a href=3D"https://www.linkedin.com/comm/j=
+obs/search?geoId=3D102556749&amp;savedSearchId=3D604844914&amp;origin=3D=
+JOB_ALERT_EMAIL&amp;f_TPR=3Da1632071395-&amp;midToken=3DAQEhRl50iidL-g=
+&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-j=
+ob_alert-4-title_jserp_mercado&amp;trkEmail=3Deml-email_job_alert_dige=
+st_01-job_alert-4-title_jserp_mercado-null-a89ral%7Ektswn4ds%7Ef7-null=
+-jobs%7Ejserp%7Esearch&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_al=
+ert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointe=
+r;word-wrap:normal;color:#FFFFFF;word-break:normal;white-space:normal;=
+-webkit-text-size-adjust:100%;display:block;text-decoration:none;-ms-t=
+ext-size-adjust:100%;overflow-wrap:normal;text-align:center;">Ver toda=
+s as vagas</a></td> </tr> </tbody> </table></a></td> </tr> <!--[if !ms=
+o]><!--> <tr> <td height=3D"3" style=3D"-webkit-text-size-adjust:100%;=
+mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">=
+ <table width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" s=
+tyle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms=
+-text-size-adjust:100%;"> <div style=3D"height:1px;font-size:1px;line-=
+height:1px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> <!-=
+-<![endif]--> </tbody> </table></td> </tr> </tbody> </table></td> </tr=
+> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D"pres=
+entation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"10=
+0%" style=3D"padding:0 24px 24px;-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody=
+> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <hr style=3D"backgr=
+ound-color:#D9D9D9;margin:0;color:#D9D9D9;border-color:#D9D9D9;border-=
+width:0;border-style:solid;height:1px;"></td> </tr> <tr> <td style=3D"=
+padding-top:32px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;ms=
+o-table-lspace:0pt;-ms-text-size-adjust:100%;"><img src=3D"https://sta=
+tic.licdn.com/sc/p/com.linkedin.email-assets-frontend%3Aemail-assets-f=
+rontend-static-content%2B__latest__/f/%2Femail-assets-frontend%2Fimage=
+s%2Femail%2Ficons%2Ficon_premium_8x8_v1.png" border=3D"0" width=3D"10"=
+ height=3D"10" style=3D"outline:none;-ms-interpolation-mode:bicubic;co=
+lor:#FFFFFF;text-decoration:none;padding-right:8px;"><img src=3D"https=
+://static.licdn.com/sc/p/com.linkedin.email-assets-frontend%3Aemail-as=
+sets-frontend-static-content%2B__latest__/f/%2Femail-assets-frontend%2=
+Fimages%2Femail%2Flogos%2Flogo_premium_no_icon_120x18_v1.png" border=3D=
+"0" alt=3D"premium" width=3D"60" height=3D"10" style=3D"outline:none;-=
+ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"></t=
+d> </tr> <tr> <td align=3D"center" style=3D"-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;padding-bottom:16px;text-align:center;"> <img alt=3D"Augusto Giani" =
+border=3D"0" height=3D"128" width=3D"128" src=3D"https://media-exp1.li=
+cdn.com/dms/image/C4E03AQHT6iYQTpv9IQ/profile-displayphoto-shrink_100_=
+100/0/1609543547171?e=3D2159024400&amp;v=3Dbeta&amp;t=3DrV0KRb-rCSTzj6=
+3pR8sd-ZiXiTEYCwV9iqn0iNKkEdY" style=3D"border-radius:50%;outline:none=
+;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:none;"><=
+/td> </tr> <tr> <td align=3D"center" style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;text-align:center;"> <h2 style=3D"margin:0;color:#000000;font-weig=
+ht:400;font-size:20px;line-height:1.2;">Veja as vagas para as quais vo=
+c=C3=AA seria um bom candidato</h2></td> </tr> <tr> <td align=3D"cente=
+r" style=3D"padding:16px 0;-webkit-text-size-adjust:100%;mso-table-rsp=
+ace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:cent=
+er;"> <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" align=3D"center" style=3D"-webkit-text-size-adjust:100%;=
+mso-table-rspace:0pt;display:inline-block;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;"> <tbody> <tr> <td align=3D"center" valign=3D"midd=
+le" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-ta=
+ble-lspace:0pt;font-size:16px;-ms-text-size-adjust:100%;"><a href=3D"h=
+ttps://www.linkedin.com/comm/premium/products/?family=3Djss&amp;midTok=
+en=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_jo=
+b_alert_digest_01-job_alert-19-premium_upsell_top_applicant_mercado&am=
+p;trkEmail=3Deml-email_job_alert_digest_01-job_alert-19-premium_upsell=
+_top_applicant_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-neptune%2Fprem=
+ium%2Eproducts&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_dige=
+st_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;word-w=
+rap:normal;color:#0A66C2;word-break:normal;white-space:normal;-webkit-=
+text-size-adjust:100%;display:block;text-decoration:none;-ms-text-size=
+-adjust:100%;overflow-wrap:normal;text-align:center;"> <table role=3D"=
+presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td bgcolo=
+r=3D"#FFFFFF" style=3D"padding:12px 24px;color:#666666;-webkit-text-si=
+ze-adjust:100%;font-weight:400;display:inline-block;text-decoration:no=
+ne;font-size:16px;-ms-text-size-adjust:100%;line-height:1.25em;border-=
+color:#0a66c2;background-color:#FFFFFF;border-radius:34px;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;border-width:1px;border-style:solid;"><a=
+ href=3D"https://www.linkedin.com/comm/premium/products/?family=3Djss&=
+amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Dem=
+l-email_job_alert_digest_01-job_alert-19-premium_upsell_top_applicant_=
+mercado&amp;trkEmail=3Deml-email_job_alert_digest_01-job_alert-19-prem=
+ium_upsell_top_applicant_mercado-null-a89ral%7Ektswn4ds%7Ef7-null-nept=
+une%2Fpremium%2Eproducts&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_=
+alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:poin=
+ter;word-wrap:normal;color:#0A66C2;word-break:normal;white-space:norma=
+l;-webkit-text-size-adjust:100%;display:block;text-decoration:none;-ms=
+-text-size-adjust:100%;overflow-wrap:normal;text-align:center;">Experi=
+mente Premium de gra=C3=A7a</a></td> </tr> </tbody> </table></a></td> =
+</tr> <!--[if !mso]><!--> <tr> <td height=3D"3" style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-si=
+ze-adjust:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <=
+td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:1px;fo=
+nt-size:1px;line-height:1px"> &nbsp; </div></td> </tr> </tbody> </tabl=
+e></td> </tr> <!--<![endif]--> </tbody> </table></td> </tr> </tbody> <=
+/table></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td>=
+ </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspac=
+e:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table role=3D=
+"presentation" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" bgcolor=3D"#F3F2EF" align=3D"left" style=3D"background-color:#F=
+3F2EF;padding-top:16px;color:#000000;-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-=
+align:left;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;=
+mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">=
+ <table width=3D"24" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" =
+style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-m=
+s-text-size-adjust:100%;"> <div style=3D"height:0px;font-size:0px;line=
+-height:0px"> &nbsp; </div></td> </tr> </tbody> </table></td> <td styl=
+e=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspa=
+ce:0pt;-ms-text-size-adjust:100%;"> <table role=3D"presentation" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;=
+-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size=
+-adjust:100%;"> <table role=3D"presentation" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table=
+ width=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D=
+"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-s=
+ize-adjust:100%;"> <div style=3D"height:12px;font-size:12px;line-heigh=
+t:12px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> <tr> <t=
+d align=3D"left" style=3D"padding:0;color:#000000;-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;text-align:left;"> <p style=3D"margin:0;word-wrap:break-word;c=
+olor:#000000;word-break:break-word;font-weight:400;-ms-word-break:brea=
+k-all;font-size:12px;line-height:1.333;overflow-wrap:break-word;">Este=
+ e-mail foi enviado para Augusto Giani (Estagi=C3=A1rio na Qualidade d=
+a 3|Network em Infortel Telecom Ltda). <a href=3D"https://www.linkedin=
+.com/e/v2?e=3Da89ral-ktswn4ds-f7&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_job_alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp;a=3Dcusto=
+merServiceUrl&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y=
+1&amp;ek=3Demail_job_alert_digest_01&amp;articleId=3D4788" style=3D"cu=
+rsor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;text-decorati=
+on:underline;display:inline-block;-ms-text-size-adjust:100%;">Saiba po=
+r que inclu=C3=ADmos isto.</a></p></td> </tr> <tr> <td style=3D"-webki=
+t-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;"> <table width=3D"1" border=3D"0" cellspacing=3D=
+"0" cellpadding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> =
+<tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:=
+12px;font-size:12px;line-height:12px"> &nbsp; </div></td> </tr> </tbod=
+y> </table></td> </tr> <tr> <td align=3D"left" style=3D"padding:0;colo=
+r:#000000;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;text-align:left;"> <p style=3D"m=
+argin:0;color:#000000;font-weight:400;font-size:12px;line-height:1.333=
+;">Voc=C3=AA est=C3=A1 recebendo e-mails sobre Alerta de vaga.</p></td=
+> </tr> <tr> <td align=3D"left" style=3D"padding:16px 0 0 0;-webkit-te=
+xt-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;text-align:left;"> <table role=3D"presentation" alig=
+n=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td valign=
+=3D"middle" align=3D"left" style=3D"padding:0 0 16px 0;-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;vertical-align:middle;mso-table-ls=
+pace:0pt;-ms-text-size-adjust:100%;text-align:left;"><a href=3D"https:=
+//www.linkedin.com/comm/jobs/alerts?midToken=3DAQEhRl50iidL-g&amp;midS=
+ig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_job_alert_digest_01-footer-17-=
+manage_alert&amp;trkEmail=3Deml-email_job_alert_digest_01-footer-17-ma=
+nage_alert-null-a89ral%7Ektswn4ds%7Ef7-null-job%7Ealert%7Emanager&amp;=
+lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74BBsdwSw%=
+2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-webkit-tex=
+t-size-adjust:100%;text-decoration:underline;display:inline-block;-ms-=
+text-size-adjust:100%;"> <span style=3D"color:#0A66C2;font-weight:400;=
+font-size:12px;line-height:1.333;">Gerenciar alertas de vaga</span></a=
+>&nbsp;&nbsp;=C2=B7&nbsp;&nbsp;<a href=3D"https://www.linkedin.com/e/v=
+2?e=3Da89ral-ktswn4ds-f7&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_=
+alert_digest_01%3BI74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp;a=3Djobs-jserp-se=
+arch-mirror&amp;midToken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&=
+amp;ek=3Demail_job_alert_digest_01&amp;li=3D18&amp;m=3Dfooter&amp;ts=3D=
+delete_alert&amp;alertAction=3Ddelete&amp;savedSearchId=3D604844914" s=
+tyle=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;tex=
+t-decoration:underline;display:inline-block;-ms-text-size-adjust:100%;=
+"> <span style=3D"color:#0A66C2;font-weight:400;font-size:12px;line-he=
+ight:1.333;">Cancelar inscri=C3=A7=C3=A3o</span></a>&nbsp;&nbsp;=C2=B7=
+&nbsp;&nbsp;<a href=3D"https://www.linkedin.com/e/v2?e=3Da89ral-ktswn4=
+ds-f7&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI=
+74BBsdwSw%2BDVDD0Z1BW1Q%3D%3D&amp;a=3DcustomerServiceUrl&amp;midToken=3D=
+AQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;ek=3Demail_job_alert_di=
+gest_01&amp;li=3D43&amp;m=3Dfooter&amp;ts=3Dhelp&amp;articleId=3D67" s=
+tyle=3D"cursor:pointer;color:#0A66C2;-webkit-text-size-adjust:100%;tex=
+t-decoration:underline;display:inline-block;-ms-text-size-adjust:100%;=
+"> <span style=3D"color:#0A66C2;font-weight:400;font-size:12px;line-he=
+ight:1.333;">Ajuda</span></a></td> </tr> </tbody> </table></td> </tr> =
+<tr> <td align=3D"left" style=3D"padding:0;-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;text-align:left;"><a href=3D"https://www.linkedin.com/comm/feed/?midT=
+oken=3DAQEhRl50iidL-g&amp;midSig=3D0SkvCFb3Z659Y1&amp;trk=3Deml-email_=
+job_alert_digest_01-footer-41-home&amp;trkEmail=3Deml-email_job_alert_=
+digest_01-footer-41-home-null-a89ral%7Ektswn4ds%7Ef7-null-neptune%2Ffe=
+ed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_job_alert_digest_01%3BI74B=
+BsdwSw%2BDVDD0Z1BW1Q%3D%3D" style=3D"cursor:pointer;color:#0A66C2;-web=
+kit-text-size-adjust:100%;text-decoration:underline;display:inline-blo=
+ck;-ms-text-size-adjust:100%;"><img alt=3D"LinkedIn" border=3D"0" heig=
+ht=3D"14" src=3D"https://static.licdn.com/sc/p/com.linkedin.email-asse=
+ts-frontend%3Aemail-assets-frontend-static-content%2B__latest__/f/%2Fe=
+mail-assets-frontend%2Fimages%2Flogos%2Flogo_linkedin_mercado_blue_112=
+x28.png" width=3D"56" style=3D"outline:none;-ms-interpolation-mode:bic=
+ubic;color:#FFFFFF;display:block;text-decoration:none;"></a></td> </tr=
+> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table width=3D"1" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-s=
+ize-adjust:100%;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;"> <div style=3D"height:12px;font-size:12px;line-height:12px"> &nbs=
+p; </div></td> </tr> </tbody> </table></td> </tr> <tr> <td align=3D"le=
+ft" style=3D"padding:0;color:#000000;-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-=
+align:left;"> <p style=3D"margin:0;color:#000000;font-weight:400;font-=
+size:12px;line-height:1.333;">=C2=A9 2021 LinkedIn Ireland Unlimited C=
+ompany, Wilton Plaza, Wilton Place, Dublin 2. LinkedIn =C3=A9 um nome =
+comercial registrado da LinkedIn Ireland Unlimited Company. LinkedIn e=
+ a logomarca do LinkedIn s=C3=A3o marcas registradas do LinkedIn.</p><=
+/td> </tr> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-table-r=
+space:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table wid=
+th=3D"1" border=3D"0" cellspacing=3D"0" cellpadding=3D"1" style=3D"-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-=
+ms-text-size-adjust:100%;"> <tbody> <tr> <td style=3D"-webkit-text-siz=
+e-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <div style=3D"height:24px;font-size:24px;line-height:24=
+px"> &nbsp; </div></td> </tr> </tbody> </table></td> </tr> </tbody> </=
+table></td> </tr> </tbody> </table></td> <td style=3D"-webkit-text-siz=
+e-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <table width=3D"24" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"1" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <tbody> <tr> <td=
+ style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table=
+-lspace:0pt;-ms-text-size-adjust:100%;"> <div style=3D"height:0px;font=
+-size:0px;line-height:0px"> &nbsp; </div></td> </tr> </tbody> </table>=
+</td> </tr> </tbody> </table></td> </tr> </tbody> </table> </center></=
+td> </tr> </tbody> </table> <img alt=3D"" role=3D"presentation" src=3D=
+"https://www.linkedin.com/emimp/ip_WVRnNWNtRnNMV3QwYzNkdU5HUnpMV1kzOlp=
+XMWhhV3hmYW05aVgyRnNaWEowWDJScFoyVnpkRjh3TVE9PTo=3D.gif" style=3D"outl=
+ine:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;text-decoration:=
+none;width:1px;height:1px;"> </body> </html>
+--=-hbgeG+Y9lJH/jEInMtnO7w==--

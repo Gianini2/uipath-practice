@@ -1,0 +1,399 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1079.2,3912.8" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="37">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Core.Activities.OCR.Engines</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="34">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="593.6,3848" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="s:String[]" Name="FileList" />
+      <Variable x:TypeArguments="x:String" Name="OCRoutput" />
+      <Variable x:TypeArguments="x:String" Name="varProductName" />
+      <Variable x:TypeArguments="x:String" Name="varPreparedFor" />
+      <Variable x:TypeArguments="x:String" Name="varPrepForADDR" />
+      <Variable x:TypeArguments="x:String" Name="varModelName" />
+      <Variable x:TypeArguments="x:String" Name="varTestDate" />
+      <Variable x:TypeArguments="x:String" Name="varDOR" />
+      <Variable x:TypeArguments="x:String" Name="varReportNumber" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="552,132.8" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Este robô ainda não está pegando 100% os textos dos PDFs, provavelmente é a engine que detecta os caracteres da imagem, estou usando microsoft, e talvez seja importante tentar usar a GoogleOCR" />
+    <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="552,115.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Delay DisplayName=" Delay 3 seconds" Duration="00:00:03" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Delay_1" />
+    </Sequence>
+    <Assign sap:VirtualizedContainerService.HintSize="552,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:String[]">[FileList]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles("ScannedDocuments","*.pdf")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each - Para cada PDF na lista &quot;FileList&quot;" sap:VirtualizedContainerService.HintSize="552,3327.2" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[FileList]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="pdf" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="516.8,3202.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="[pdf.ToString]" sap:VirtualizedContainerService.HintSize="475.2,88" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+            <Sequence DisplayName="PDF SCREEN SCRAPING" sap:VirtualizedContainerService.HintSize="475.2,2834.4" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ReadPDFWithOCR DegreeOfParallelism="-1" DisplayName="Read PDF With OCR" FileName="[pdf.ToString]" sap:VirtualizedContainerService.HintSize="433.6,132" sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_1" ImageDpi="150" Range="All" Text="[OCRoutput]">
+                <ui:ReadPDFWithOCR.OCREngine>
+                  <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                    <ActivityFunc.Argument>
+                      <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                    </ActivityFunc.Argument>
+                    <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Scale="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_1" Image="[Image]" />
+                  </ActivityFunc>
+                </ui:ReadPDFWithOCR.OCREngine>
+              </ui:ReadPDFWithOCR>
+              <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Ctrl+Y" sap:VirtualizedContainerService.HintSize="433.6,154.4" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="y" KeyModifiers="Ctrl" SpecialKey="False">
+                <ui:SendHotkey.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="471c395a-4d82-476f-a965-77246ce56a5c" InformativeScreenshot="5768a4283c89cbde23aebcbe6e347c89" Selector="&lt;wnd app='acrobat.exe' cls='AcrobatSDIWindow' title='*.pdf - Adobe Acrobat Reader DC (64-bit)' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:SendHotkey.Target>
+              </ui:SendHotkey>
+              <ui:TypeInto AlterIfDisabled="{x:Null}" ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="Type Into - 50% zoom" sap:VirtualizedContainerService.HintSize="433.6,135.2" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="50">
+                <ui:TypeInto.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ad355c82-c6ad-4b80-8daf-2471ff517eae" InformativeScreenshot="f1d1d5c5e0c617a0dbfdacf3723feb40" Selector="&lt;wnd app='acrobat.exe' cls='#32770' title='Aplicar zoom em' /&gt;&lt;wnd aaname='Ampliação:' cls='ComboBoxEx32' /&gt;&lt;wnd aaname='Ampliação:' cls='ComboBox' /&gt;&lt;wnd aaname='Ampliação:' cls='Edit' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:TypeInto.Target>
+              </ui:TypeInto>
+              <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Click Enter" sap:VirtualizedContainerService.HintSize="433.6,154.4" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SpecialKey="True">
+                <ui:SendHotkey.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="471c395a-4d82-476f-a965-77246ce56a5c" InformativeScreenshot="5768a4283c89cbde23aebcbe6e347c89" Selector="&lt;wnd app='acrobat.exe' cls='AcrobatSDIWindow' title='*.pdf - Adobe Acrobat Reader DC (64-bit)' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:SendHotkey.Target>
+              </ui:SendHotkey>
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach to PDF" sap:VirtualizedContainerService.HintSize="433.6,2005.6" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="ea65d3562620a7005e2ef9d93aee0dc3" Selector="&lt;wnd app='acrobat.exe' cls='AcrobatSDIWindow' title='*.pdf - Adobe Acrobat Reader DC (64-bit)' /&gt;">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,1858.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Product Name" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_4">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_2" Image="[Image]" Scale="4" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="67630688f18748945c569d8ea192852a" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="666, 346, 330, 23" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varProductName]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Prepared For" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_5">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_3" Image="[Image]" Scale="4" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="0f73a233a81ac27e5db6854642850ade" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="664, 437, 332, 27" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varPreparedFor]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Model Name" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_7">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_5" Image="[Image]" Scale="4" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="54f01876dfdb3cb8a2650e1b6ba4b3e6" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="664, 399, 333, 37" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varModelName]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Prepared For ADDRESS" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_6">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_4" Image="[Image]" Scale="5" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="504881572d167c891de1bf030fdd1039" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="664, 471, 333, 22" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varPrepForADDR]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Test Date" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_8">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_6" Image="[Image]" Scale="5" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="9678b59a07507a4e08a169de445c3f8a" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="664, 556, 334, 27" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varTestDate]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Date of Report" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_9">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_7" Image="[Image]" Scale="5" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="d9114bacca411d70e326e8e799f172d8" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="664, 587, 314, 27" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varDOR]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text - Report Number" sap:VirtualizedContainerService.HintSize="333.6,169.6" sap2010:WorkflowViewState.IdRef="GetOCRText_10">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftOCR FilterRegion="{x:Null}" Language="{x:Null}" Output="{x:Null}" Profile="{x:Null}" Text="{x:Null}" ComputeSkewAngle="False" DisplayName="Microsoft OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_8" Image="[Image]" Scale="4" />
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target Element="{x:Null}" Id="6febce76-ace0-4c20-a81a-065b57f322f1" InformativeScreenshot="6ddf01aa607e4b9767ab33cac03f94ac" Selector="&lt;wnd aaname='Painel de documentos' cls='AVL_AVView' title='AVScrolledPageView' /&gt;&lt;wnd aaname='Alerta: documento vazio' cls='AVL_AVView' title='AVPageView' /&gt;">
+                            <ui:Target.ClippingRegion>
+                              <ui:Region Rectangle="665, 619, 328, 25" />
+                            </ui:Target.ClippingRegion>
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[varReportNumber]</OutArgument>
+                        </ui:GetOCRText.Text>
+                      </ui:GetOCRText>
+                      <ui:AppendLine DisplayName="Append Line" FileName="scrapedData.txt.txt" sap:VirtualizedContainerService.HintSize="333.6,134.4" sap2010:WorkflowViewState.IdRef="AppendLine_1" Text="[&quot;Scraped Data From&quot; + pdf.tostring +vbCr +&#xD;&#xA;vbCr +&#xD;&#xA;&quot;Prod Name: &quot; + varProductName + vbCr + &#xD;&#xA;&quot;Company Name: &quot; + varPreparedFor + vbCr + &#xD;&#xA;&quot;Prep For ADDRESS: &quot; + varPrepForADDR + vbCr +&#xD;&#xA;&quot;Model Name: &quot; + varModelName + vbCr +&#xD;&#xA;&quot;Report Date: &quot; + varDOR + vbCr +&#xD;&#xA;&quot;Test Date: &quot; + varTestDate + vbCr +&#xD;&#xA;&quot;Report Name: &quot; + varReportNumber + vbCr]" UseDefaultEncoding="False" />
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Prod Name: &quot; + varProductName + vbCr + &#xD;&#xA;&quot;Company Name: &quot; + varPreparedFor + vbCr + &#xD;&#xA;&quot;Prep For ADDRESS: &quot; + varPrepForADDR + vbCr +&#xD;&#xA;&quot;Model Name: &quot; + varModelName + vbCr +&#xD;&#xA;&quot;Report Date: &quot; + varDOR + vbCr +&#xD;&#xA;&quot;Test Date: &quot; + varTestDate + vbCr +&#xD;&#xA;&quot;Report Name: &quot; + varReportNumber + vbCr]" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+              </ui:WindowScope>
+            </Sequence>
+            <ui:CloseApplication DisplayName="Close Application - Pdf" sap:VirtualizedContainerService.HintSize="475.2,107.2" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
+              <ui:CloseApplication.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f1231323-6372-4267-95c1-c4d946ddc68d" InformativeScreenshot="45d4c0d37bc22f99e9f323ea43c8b0af" Selector="&lt;wnd app='acrobat.exe' cls='AcrobatSDIWindow' title='*.pdf - Adobe Acrobat Reader DC (64-bit)' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:CloseApplication.Target>
+            </ui:CloseApplication>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+  </Sequence>
+</Activity>
